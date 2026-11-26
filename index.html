@@ -222,6 +222,27 @@ ol.src li{margin-bottom:8px}
 .g-ms{position:absolute;top:50%;width:14px;height:14px;background:var(--primary);transform:translate(-50%,-50%) rotate(45deg);border-radius:3px}
 .g-note{font-size:.75rem;color:var(--muted);margin-top:8px}
 
+/* integration toggle */
+.tgl{display:inline-flex;background:var(--primary-bg);border-radius:999px;padding:4px;gap:4px;margin:6px 0 14px;flex-wrap:wrap}
+.tgl button{font:inherit;font-size:.85rem;font-weight:800;border:0;background:none;color:var(--primary);padding:.5rem 1.1rem;border-radius:999px;cursor:pointer;transition:background .15s,color .15s}
+.tgl button.on{background:var(--primary);color:#fff}
+.imswrap{overflow-x:auto}
+.ims{display:grid;grid-template-columns:120px repeat(4,minmax(110px,1fr));gap:6px;min-width:560px;font-size:.8rem}
+.ims>div{border-radius:10px;padding:8px 10px;display:flex;align-items:center}
+.ims .hd{justify-content:center;color:#fff;font-weight:800;border-radius:999px}
+.ims .cl{font-weight:800;color:var(--primary);background:var(--primary-bg)}
+.ims .own{background:var(--common);color:var(--muted);justify-content:center;text-align:center;font-weight:600}
+.ims .one{grid-column:2 / span 4;background:var(--accent-bg);color:var(--primary);font-weight:700;justify-content:center;text-align:center;border:1.5px solid var(--accent)}
+.ims .spec{background:var(--surface);border:1.5px solid;font-weight:600}
+.ims[data-mode=sep] .one{display:none}
+.ims[data-mode=int] .own{display:none}
+.ims>div:not(.hd):not(.cl){animation:pop .35s ease}
+@keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+.counts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin:18px 0 8px}
+.count-tile{background:var(--primary-bg);border-radius:var(--radius-sm);padding:12px 16px}
+.count-tile .n{font-size:2rem;font-weight:800;color:var(--primary);line-height:1}
+.count-tile .l{font-size:.8rem;color:var(--muted);margin-top:4px}
+
 footer{background:rgba(255,255,255,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--border);margin-top:34px;padding:22px 0 40px;font-size:.85rem;color:var(--muted)}
 footer b{color:var(--primary)}
 @media(max-width:700px){
@@ -377,9 +398,15 @@ footer b{color:var(--primary)}
 <section class="panel" id="p-learn">
   <p class="eyebrow">Learn &amp; quiz</p>
   <h2>An IMS runs several ISO standards as one system, because they share the Harmonized Structure</h2>
-  <p>An integrated management system is an organisational information system: shared processes, documents, risk registers, KPIs and audit records, usually held on one GRC/IMS platform linked to the ERP. Clauses 4 to 10 are the same for all standards; only clause 8 differs.</p>
-  <div class="gridwrap"><div class="iso-grid" id="isoGrid"></div></div>
-  <div class="legend"><span><i style="background:var(--common)"></i>Shared once</span><span><i style="background:var(--c9001)"></i>Standard-specific</span></div>
+  <p>An integrated management system is an organisational information system: shared processes, documents, risk registers, KPIs and audit records, usually held on one GRC/IMS platform linked to the ERP. Clauses 4 to 10 share the same structure and core text in every standard; clause 8 is where each one asks for its own things. Switch the view below to see what that changes.</p>
+  <div class="tgl" role="group" aria-label="View"><button type="button" class="on" data-m="sep">Today: four separate systems</button><button type="button" data-m="int">Integrated: one system</button></div>
+  <div class="imswrap"><div class="ims" id="ims" data-mode="sep"></div></div>
+  <div class="counts">
+    <div class="count-tile"><div class="n" data-sep="4" data-int="1">4</div><div class="l">Policies</div></div>
+    <div class="count-tile"><div class="n" data-sep="4" data-int="1">4</div><div class="l">Risk registers</div></div>
+    <div class="count-tile"><div class="n" data-sep="4" data-int="1">4</div><div class="l">Internal audit programmes</div></div>
+  </div>
+  <p class="small mute" id="imsNote"></p>
 
   <h3>Status in November 2026</h3>
   <div class="cards" id="normCards"></div>
@@ -438,6 +465,11 @@ const GRID_ROWS = [
   ['9 Evaluation', 'One internal audit programme and one management review'],
   ['10 Improvement', 'One corrective-action process for all standards']
 ];
+const SEP_TEXT = ['Own context analysis','Own policy and roles','Own risk register','Own training and documents','','Own audit and review','Own corrective actions'];
+const IMS_NOTE = {
+  sep: 'Each standard run on its own: four policies, four risk registers, four audit programmes. The grey blocks are the same kind of work done four times.',
+  int: 'Integrated: the shared clauses are managed once. Each standard still adds its own requirements in clause 8 and a few extras elsewhere. The realistic saving in audit time is at most 20% [16].'
+};
 const STATS = [
   ['€863 M','2025 revenue; EBITDA above €100 M [1]'],
   ['5,000+','Staff: 2,900 in Castellón, 640 elsewhere in Spain, 1,473 abroad [2]'],
@@ -564,14 +596,22 @@ $('#sAudit').textContent = '≈ '+money(AUDIT_SAVE);
 $('#mSetup').textContent = money(SETUP); $('#mRun').textContent = money(RUN);
 
 (function(){
-  const g = $('#isoGrid');
-  g.append(el('div','hd empty',''));
+  const g = $('#ims');
+  g.append(el('div',''));
   STANDARDS.forEach(s => { const d = el('div','hd', s.name.replace('ISO/IEC ','ISO ')); d.style.background = `var(${s.color})`; g.append(d); });
-  GRID_ROWS.forEach(([cl, v]) => {
+  GRID_ROWS.forEach(([cl, v], ri) => {
     g.append(el('div','cl', cl));
     if (Array.isArray(v)) v.forEach((t,i)=>{ const d = el('div','spec', t); d.style.borderColor = `var(${STANDARDS[i].color})`; g.append(d); });
-    else g.append(el('div','common', v));
+    else { STANDARDS.forEach(() => g.append(el('div','own', SEP_TEXT[ri]))); g.append(el('div','one', v)); }
   });
+  function setMode(m){
+    g.dataset.mode = m;
+    document.querySelectorAll('.tgl button').forEach(b => b.classList.toggle('on', b.dataset.m===m));
+    document.querySelectorAll('.count-tile .n').forEach(n => n.textContent = n.dataset[m]);
+    $('#imsNote').textContent = IMS_NOTE[m];
+  }
+  document.querySelectorAll('.tgl button').forEach(b => b.addEventListener('click', () => setMode(b.dataset.m)));
+  setMode('sep');
 })();
 STANDARDS.forEach(s => { const c = el('div','card norm', `<div class="k">${s.topic}</div><h3 style="margin-top:0">${s.name}</h3><p class="small">${s.what}</p><p class="small mute">${s.status}</p><span class="tag">${s.tag}</span>`); c.style.setProperty('--c', `var(${s.color})`); $('#normCards').append(c); });
 STATS.forEach(([n,l]) => $('#stats').append(el('div','stat', `<div class="n">${n}</div><div class="l">${l}</div>`)));
