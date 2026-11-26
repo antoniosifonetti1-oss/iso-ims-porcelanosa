@@ -242,6 +242,7 @@ ol.src li{margin-bottom:8px}
 .count-tile{background:var(--primary-bg);border-radius:var(--radius-sm);padding:12px 16px}
 .count-tile .n{font-size:2rem;font-weight:800;color:var(--primary);line-height:1}
 .count-tile .l{font-size:.8rem;color:var(--muted);margin-top:4px}
+.formula{display:block;font-size:.74rem;line-height:1.4;color:var(--muted);background:var(--soft);border-radius:8px;padding:4px 8px;margin-top:4px}
 
 /* balanced grids: boxes always fill the row evenly (set by the script from the item count) */
 :is(.cards,.chips,.recs,.stats,.go,.counts,.vcards,.phases,.out,.vizcols)[data-n]{display:grid;gap:14px}
@@ -381,6 +382,7 @@ footer b{color:var(--primary)}
       <div class="res"><div class="n" id="rPct"></div><div class="l" id="rPctL"></div></div>
     </div>
     <div class="verdict-line" id="rVerdict"></div>
+    <p class="small" id="rBE" style="margin:8px 0 0"></p>
     <p class="small mute" style="margin:10px 0 0">Revenue per day of full stoppage = €863 M ÷ 330 days ≈ €2.6 M, an upper bound. Ignores recovery costs, ransom and fines.</p>
   </div>
 
@@ -407,7 +409,7 @@ footer b{color:var(--primary)}
 
   <h3>Indicators to monitor and trade-offs</h3>
   <div class="cards">
-    <div class="card"><div class="k">3 indicators</div><ol id="kpis" style="margin:6px 0 0;padding-left:20px"></ol></div>
+    <div class="card"><div class="k">3 indicators</div><ol id="kpis" style="margin:6px 0 0;padding-left:20px"></ol><p class="small" style="margin:10px 0 0"><b>Review rule:</b> <span id="kpiRule"></span></p></div>
     <div class="card"><div class="k">Trade-offs stated openly</div><ul id="trade"></ul></div>
   </div>
 
@@ -502,13 +504,13 @@ const STATS = [
   ['€863 M','2025 revenue; EBITDA above €100 M'],
   ['5,000+','Staff: 2,900 in Castellón, 640 elsewhere in Spain, 1,473 abroad'],
   ['200+','Own stores, and 1,000+ points of sale worldwide'],
-  ['€102 M','Capex in 2025'],
+  ['€102 M','Industrial investment (capex) and a bigger sales network in 2025: 18.6% more than in 2024'],
   ['4.29 GWh','New solar plant']
 ];
 const COMPANY_CARDS = [
-  {k:'Who they are', body:'A family-controlled holding headquartered in Vila-real (Castellón, Spain). It makes ceramic tiles, kitchens, bathroom products and the solid-surface material Krion, and sells through its own retail network to residential, contract and retail customers.'},
+  {k:'Who they are', body:'<b>Sector:</b> ceramic tile manufacturer. <b>Size:</b> large company. A family-controlled holding headquartered in Vila-real (Castellón, Spain). It makes ceramic tiles, kitchens, bathroom products and the solid-surface material Krion, and sells through its own retail network to residential, contract and retail customers.'},
   {k:'What “brand companies” means', body:'The group is a holding of several separate companies, one per product line or brand. In our briefing they run their own quality and environment teams, so today each certificate is managed company by company. We did not find a public count of them, so we do not give a number.'},
-  {k:'Management systems (public)', body:'ISO 9001, 14001, AEO, EPDs and a carbon footprint. No ISO 27001 or 42001 is shown.'},
+  {k:'Management systems (public)', body:'ISO 9001, 14001, AEO (Authorised Economic Operator), EPDs and a carbon footprint. No ISO 27001 or 42001 is shown.'},
   {k:'Digital and AI', body:'AI tools in industrial processes; an AI space configurator for customers; ERP, e-commerce and store systems (A).'}
 ];
 const VALUE_ROWS = [
@@ -526,20 +528,21 @@ const BARRIERS = [
 const RISKS = ['Certificate without real change.','Ransomware reaching stores or plants before phase 2 controls.','Consultant dependence.','Buying a 42001 certificate for marketing instead of control.','Audit-saving promises not materialising (20% cap, real integration required).'];
 const PHASE_INFO = [
   {tag:'1 · Adopt', t:'One group IMS: 9001 + 14001', key:'ims', b:'Merged during the 2026 transitions; the data backbone for CSRD.', gate:null, pilot:false},
-  {tag:'2 · Adopt, in two phases', t:'ISO 27001', key:'iso27001', b:'Phase 1: HQ IT, ERP and e-commerce, certified in 18 months. Phase 2: plants (OT) and stores.', gate:'Phase 2 starts only after phase 1 passes certification and the recovery drill meets target.', pilot:false},
-  {tag:'3 · Pilot', t:'ISO 42001', key:'iso42001', b:'For industrial AI and the customer configurator. Certify only if the month-12 gate is met (+€60 k set-up, +€25 k a year).', gate:'Month-12 decision.', pilot:true}
+  {tag:'2 · Adopt, in two phases', t:'ISO 27001', key:'iso27001', b:'Phase 1: HQ IT, ERP and e-commerce, certified in 18 months. Phase 2: plants (OT) and stores.', gate:'Phase 2 starts only after phase 1 is certified and a recovery drill meets the 24 h target.', pilot:false},
+  {tag:'3 · Pilot', t:'ISO 42001', key:'iso42001', b:'For industrial AI and the customer configurator. Certify only if the month-12 gate is met (+€60 k set-up, +€25 k a year).', gate:'Month 12: certify only if every AI system is inventoried and a trigger applies. Otherwise decide again at month 24.', pilot:true}
 ];
 const CONDS = [
-  'A board-level sponsor and a group IMS lead at the holding, with brand quality managers reporting to them.',
-  '27001 phase 2 starts only after phase 1 passes certification and the recovery drill meets target.',
-  '42001 certification at month 12 only if all AI systems are inventoried, and either a key customer or tender requires it or AI enters HR/credit decisions.'
+  '<b>Governance first:</b> a board-level sponsor at the holding and a group IMS lead, with the brands’ quality and environment managers reporting to that lead. No budget is released until both are named.',
+  '<b>27001 gate:</b> phase 2 (plants and stores) starts only after phase 1 is certified and a recovery drill meets the 24 h target.',
+  '<b>42001 gate at month 12:</b> certify only if every AI system is inventoried and at least one trigger applies: a key customer or tender requires it, or AI starts to support HR or consumer-credit decisions, which are high-risk uses under the AI Act. Otherwise keep the pilot running and decide again at month 24.'
 ];
 const KPIS = [
-  'Compliance cost per certified site per year (audits, consultants, internal hours): at least 15% below 2026 by year 3.',
-  'Time to restore ERP and e-commerce in a recovery drill: under 24 h, with 100% MFA and endpoint coverage.',
-  'Share of AI systems with a named owner and a completed impact assessment: 100% by month 12.'
+  {t:'<b>Compliance cost per certified site per year</b> (audit fees, consultants, internal hours): baseline measured in the first three months, then at least 15% lower by year 3.', f:['CCS = (audit fees + consultant fees + internal hours × hourly cost + IMS/GRC licences) ÷ number of certified sites','Reduction vs baseline = (CCS₂₀₂₆ − CCS_year 3) ÷ CCS₂₀₂₆ × 100 → target ≥ 15%']},
+  {t:'<b>Time to restore ERP and e-commerce in a recovery drill:</b> under 24 h, with 100% MFA and endpoint (EDR) coverage within phase 1 scope.', f:['RTO = time service is restored − time the drill starts (in hours) → target < 24 h','MFA coverage = accounts with MFA ÷ total accounts in scope × 100 → target 100%','Endpoint coverage = devices with EDR ÷ total devices in scope × 100 → target 100%']},
+  {t:'<b>Share of AI systems with a named owner and a completed impact assessment:</b> 100% by month 12.', f:[]}
 ];
-const TRADE = ['About €0.9 M a year buys resilience that is invisible until an incident.','Centralising the IMS reduces the brands’ autonomy.','Not certifying 42001 now gives up some early-mover marketing value.'];
+const KPI_RULE = 'If indicator 1 misses its target two years running, or two drills in a row fail, the board reviews the programme.';
+const TRADE = ['<b>(a)</b> About €0.9 M a year buys resilience that is invisible until an incident. Counting lost margin, it pays for itself only if it prevents about one day of full stoppage a year; counting lost revenue instead (an upper bound), about one day every three years.','<b>(b)</b> A group IMS moves authority from the brand companies to the holding, so the brands lose some autonomy.','<b>(c)</b> Not certifying 42001 now gives up early-mover visibility, since Spain had no 42001 certificates in 2025.'];
 /* Gantt, first 90 days: start day, end day */
 const PLAN90 = [
   {label:'Appoint the board-level sponsor and the group IMS lead', owner:'CEO / holding', s:0, e:30},
@@ -655,7 +658,8 @@ PHASE_INFO.forEach(p => {
   $('#phases').append(el('div','phase'+(p.pilot?' pilot':''), `<span class="pill${p.pilot?' pilot':''}">${p.tag}</span><h3 style="margin:4px 0 0">${p.t}</h3><div class="budget"><b>${money(s)} set-up</b>${r<0?'saves ':''}${money(Math.abs(r))} a year ${r<0?'in running costs':'to run'}</div><p class="small" style="margin:0">${p.b}</p>${p.gate?`<div class="gate"><b>Gate</b>${p.gate}</div>`:''}`));
 });
 CONDS.forEach(t => $('#conds').append(el('li','',t)));
-KPIS.forEach(t => $('#kpis').append(el('li','',t)));
+KPIS.forEach(k => $('#kpis').append(el('li','', k.t + k.f.map(x => `<span class="formula">${x}</span>`).join(''))));
+$('#kpiRule').textContent = KPI_RULE;
 TRADE.forEach(t => $('#trade').append(el('li','',t)));
 /* cost visuals */
 function stackViz(stackId, legId, col, totalId, subId, total, sub){
@@ -697,6 +701,8 @@ function calc(){
   $('#rEVc').textContent = Math.round(cover)+'%';
   $('#rPct').textContent = pct.toFixed(2)+'%';
   $('#rPctL').textContent = `of revenue (${fm(protect)} of sales a year) to protect to cover the full cost`;
+  const run = RUN/1e6, dMargin = run/(DAILY*(m/100)), dRev = run/DAILY;
+  $('#rBE').innerHTML = `<b>Break-even on running cost alone:</b> ${fm(run)} a year equals about ${dMargin.toFixed(1)} ${dMargin.toFixed(1)==='1.0'?'day':'days'} a year of full stoppage at a ${m}% margin. Counting lost revenue instead of margin (an upper bound), it is about one day every ${(1/dRev).toFixed(1)} years.`;
   const v = $('#rVerdict');
   v.className = 'verdict-line ' + (cover>=100 ? 'pos' : 'neg');
   v.textContent = cover>=100
