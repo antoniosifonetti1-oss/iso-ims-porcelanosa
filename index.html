@@ -85,6 +85,8 @@ p{margin:0 0 .9rem}
 
 .warn{background:var(--soft);color:var(--text);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:var(--radius-sm);padding:14px 18px;margin:18px 0;font-size:.95rem}
 .warn b:first-child{color:var(--primary)}
+.warn-title{text-align:center;font-size:1.15rem;font-weight:800;color:var(--primary);margin-bottom:2px}
+.warn-sub{text-align:center;font-size:.8rem;color:var(--muted);margin:0 0 .7rem}
 .cards{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:14px 0}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px}
 .card .k{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
@@ -523,7 +525,7 @@ const SOURCES = [
   ['Valencia Plaza. Novedades de Porcelanosa en su Muestra Internacional (AI configurator)','https://valenciaplaza.com/valenciaplaza/lainnovacionylatecnologiadesvelanlasnovedadesdeporcelanosaensumuestrainternacional',''],
   ['Comparitech. Ransomware attacks on manufacturers: average downtime 11.6 days (calculator default)','https://comparitech.com/blog/information-security/ransomware-manufacturing-companies','not in the PDF yet; all manufacturers, 2018–Oct 2024']
 ];
-const WEAK = '<b>Our own considerations, stated for honesty.</b> These are our judgements about where the evidence is weak or contested, not established facts. (a) “ISO certification improves financial performance” is contested: reviews find positive, neutral and negative effects, plus a selection effect [18], so we do not count financial uplift as a benefit. (b) “ISO 42001 = AI Act compliance” is not supported [11][12]. (c) All internal details (A) and cost figures are our estimates; vendor price ranges vary widely and come from sellers of compliance services [17]. (d) We found no public evidence on whether customers require ISO 27001.';
+const WEAK = '<div class="warn-title">Our own considerations</div><p class="warn-sub">Stated for honesty.</p>These are our judgements about where the evidence is weak or contested, not established facts. (a) “ISO certification improves financial performance” is contested: reviews find positive, neutral and negative effects, plus a selection effect [18], so we do not count financial uplift as a benefit. (b) “ISO 42001 = AI Act compliance” is not supported [11][12]. (c) All internal details (A) and cost figures are our estimates; vendor price ranges vary widely and come from sellers of compliance services [17]. (d) We found no public evidence on whether customers require ISO 27001.';
 const QUIZ = [
   {q:'What makes it possible to run 9001, 14001, 27001 and 42001 as one system?', o:['Same national publisher','Shared Harmonized Structure (clauses 4–10)','Identical Annex A lists','EU requires joint audits'], a:1, e:'All recent ISO management system standards share the same clause structure and core text, so one manual, internal audit and management review can serve all of them.'},
   {q:'Which edition of ISO 14001 is current in November 2026?', o:['2015 unchanged','2015 + Amd 1:2024','2026, published April 2026','2027 draft'], a:2, e:'Published 15 April 2026, replacing 2015 + the 2024 climate amendment; 2015 certificates must transition by about May 2029 [9].'},
