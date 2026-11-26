@@ -16,9 +16,9 @@
 :root{
   --bg:#eef3f5; --surface:#fff; --border:#e4eef2; --text:#232733; --muted:#78808a;
   --primary:#17475f; --primary-h:#123a4d; --accent:#0b6e7f; --accent-bg:#e0f7fa; --primary-bg:#eaf4fa;
-  --amber:#e3a94b; --amber-bg:#fdf3e1; --amber-ink:#5c4310;
+  --soft:#f3f8fa; --teal2:#2f8ca0;
   --radius:18px; --radius-sm:12px; --shadow:0 4px 14px #1e323c14; --shadow-md:0 14px 34px #1e323c1f;
-  --c9001:#17475f; --c14001:#2f8ca0; --c27001:#6a5fa8; --c42001:#c4593f;
+  --c9001:#17475f; --c14001:#2f8ca0; --c50001:#4a8a5c; --c27001:#6a5fa8; --c42001:#c4593f;
   --common:#e4eef2; --ok:#0b6e7f; --bad:#c4593f;
 }
 *{box-sizing:border-box}
@@ -80,10 +80,11 @@ p{margin:0 0 .9rem}
 .recs{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:0 0 20px}
 .rec{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px}
 .pill{display:inline-block;color:#fff;background:var(--accent);border-radius:999px;padding:.18rem .7rem;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.6rem}
-.pill.pilot{background:var(--amber);color:#3d2c08}
+.pill.pilot{background:var(--teal2)}
 .rec p{margin:0;font-size:.95rem}
 
-.warn{background:var(--amber-bg);color:var(--amber-ink);border-left:4px solid var(--amber);border-radius:var(--radius-sm);padding:14px 18px;margin:18px 0;font-size:.95rem}
+.warn{background:var(--soft);color:var(--text);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:var(--radius-sm);padding:14px 18px;margin:18px 0;font-size:.95rem}
+.warn b:first-child{color:var(--primary)}
 .cards{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:14px 0}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px}
 .card .k{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
@@ -129,7 +130,7 @@ tr.sub td{font-weight:800;background:var(--primary-bg);color:var(--primary)}
 /* phases */
 .phases{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin:14px 0}
 .phase{background:var(--surface);border:1px solid var(--border);border-top:5px solid var(--accent);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px}
-.phase.pilot{border-top-color:var(--amber)}
+.phase.pilot{border-top-color:var(--teal2)}
 .phase .budget{font-size:.9rem;margin:.5rem 0 .6rem;color:var(--muted)}
 .phase .budget b{font-size:1.5rem;font-weight:800;display:block;line-height:1.2;color:var(--primary)}
 .phase .gate{margin-top:.8rem;padding-top:.8rem;border-top:1px solid var(--border);font-size:.85rem}
@@ -165,7 +166,59 @@ details[open] summary{margin-bottom:10px}
 .score{font-weight:800;font-size:1.3rem;margin:16px 0;color:var(--primary)}
 ol.src{padding-left:1.5rem;font-size:.92rem}
 ol.src li{margin-bottom:8px}
-.flag{display:inline-block;font-size:.68rem;font-weight:800;background:var(--amber-bg);color:var(--amber-ink);border:1px solid var(--amber);border-radius:999px;padding:.05rem .55rem;margin-left:6px;vertical-align:1px}
+.flag{display:inline-block;font-size:.68rem;font-weight:800;background:var(--accent-bg);color:var(--accent);border-radius:999px;padding:.05rem .55rem;margin-left:6px;vertical-align:1px}
+
+/* ISO code chips */
+.chips{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin:6px 0 20px}
+.chip{background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--c);border-radius:var(--radius-sm);box-shadow:var(--shadow);padding:10px 12px}
+.chip .code{font-weight:800;color:var(--primary);font-size:.95rem}
+.chip .what{font-size:.8rem;color:var(--text);font-weight:600}
+.chip .data{font-size:.74rem;color:var(--muted);margin-top:4px;line-height:1.35}
+.chip .has{display:inline-block;font-size:.65rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:.05rem .5rem;margin-top:5px;background:var(--accent-bg);color:var(--accent)}
+.chip .has.no{background:var(--bg);color:var(--muted)}
+.codes{display:inline-flex;gap:4px;flex-wrap:wrap;vertical-align:middle}
+.codes i{font-style:normal;font-size:.72rem;font-weight:800;border-radius:999px;padding:.05rem .55rem;color:#fff;background:var(--c)}
+
+/* value cards */
+.vcards{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin:14px 0}
+.vcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 18px}
+.vcard h4{margin:0 0 6px;font-size:1rem;color:var(--primary);font-weight:800}
+.vcard p{margin:8px 0 0;font-size:.9rem}
+
+/* cost visual */
+.viz{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin:14px 0}
+.viz h4{margin:0 0 2px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:800}
+.viz .total{font-size:1.9rem;font-weight:800;color:var(--primary);letter-spacing:-.02em;line-height:1.15}
+.viz .sub{font-size:.8rem;color:var(--muted);margin-bottom:12px}
+.stack{display:flex;height:34px;border-radius:999px;overflow:hidden;background:var(--bg)}
+.stack span{display:block;height:100%}
+.legendrows{display:grid;gap:8px;margin-top:14px}
+.lrow{display:grid;grid-template-columns:14px 1fr auto;gap:10px;align-items:start;font-size:.88rem}
+.lrow i{width:12px;height:12px;border-radius:4px;margin-top:5px}
+.lrow small{display:block;color:var(--muted);font-size:.75rem}
+.lrow b{white-space:nowrap;color:var(--primary)}
+.vizcols{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+@media(max-width:760px){.vizcols{grid-template-columns:1fr}}
+.hidden-costs{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0;padding:0;list-style:none}
+.hidden-costs li{background:var(--soft);border:1px solid var(--border);border-radius:999px;padding:.25rem .8rem;font-size:.8rem}
+
+/* gantt */
+.gantt{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 18px;margin:14px 0;overflow-x:auto}
+.g-inner{min-width:520px}
+.g-axis,.g-row{display:grid;grid-template-columns:190px 1fr;gap:12px;align-items:center}
+.g-axis{font-size:.72rem;font-weight:800;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.g-scale{position:relative;height:20px}
+.g-scale span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.g-scale span:first-child{transform:none}
+.g-scale span:last-child{transform:translateX(-100%)}
+.g-row{padding:9px 0;border-top:1px solid var(--border)}
+.g-label{font-size:.85rem;font-weight:700;color:var(--primary);line-height:1.3}
+.g-label small{display:block;font-weight:500;color:var(--muted);font-size:.72rem}
+.g-track{position:relative;height:26px;background:
+  linear-gradient(to right,var(--border) 1px,transparent 1px) 0 0/33.3333% 100%, var(--soft);border-radius:8px}
+.g-bar{position:absolute;top:3px;bottom:3px;border-radius:999px;background:linear-gradient(90deg,var(--primary),var(--accent));color:#fff;font-size:.68rem;font-weight:800;display:flex;align-items:center;padding:0 10px;white-space:nowrap}
+.g-ms{position:absolute;top:50%;width:14px;height:14px;background:var(--primary);transform:translate(-50%,-50%) rotate(45deg);border-radius:3px}
+.g-note{font-size:.75rem;color:var(--muted);margin-top:8px}
 
 footer{background:rgba(255,255,255,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--border);margin-top:34px;padding:22px 0 40px;font-size:.85rem;color:var(--muted)}
 footer b{color:var(--primary)}
@@ -196,15 +249,17 @@ footer b{color:var(--primary)}
     <span class="logo-mark hero-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
     <p class="hero-eyebrow">Briefing for managers · ISO 9001 / 14001 / 50001 / 27001 / 42001</p>
     <h1>Should Porcelanosa Grupo run its ISO standards as one system?</h1>
-    <p class="hero-sub">Yes: one group system now, information security in phases, and AI as a pilot.</p>
+    <p class="hero-sub">Yes: one group system now, information security in two phases, and AI as a pilot.</p>
     <p class="hero-desc">Team FARA · Built for SM&amp;IT</p>
   </div>
   <div class="sheet">
-    <p class="eyebrow">Our recommendation</p>
+    <p class="eyebrow">The five ISO standards in plain words</p>
+    <div class="chips" id="isoChips"></div>
+    <p class="eyebrow">Our recommendation: three decisions</p>
     <div class="recs">
-      <div class="rec"><span class="pill">Adopt</span><p>One group IMS that merges the existing ISO 9001, 14001 and 50001, and feeds CSRD climate reporting.</p></div>
-      <div class="rec"><span class="pill">Adopt, phased</span><p>ISO 27001: IT, ERP and e-commerce first, then plants and stores.</p></div>
-      <div class="rec"><span class="pill pilot">Pilot</span><p>ISO 42001 for industrial AI and the customer configurator, with a certification decision at month 12.</p></div>
+      <div class="rec"><span class="pill">1 · Adopt</span><p><b>Merge what Porcelanosa already has.</b> One group system for ISO 9001, 14001 and 50001, instead of separate ones per brand company. It also feeds CSRD climate reporting.</p></div>
+      <div class="rec"><span class="pill">2 · Adopt, in two phases</span><p><b>Add ISO 27001 (information security).</b> <b>Phase 1</b>, certified within 18 months: head-office IT, ERP and e-commerce. <b>Phase 2</b>: plants and stores, only after phase 1 is certified and a recovery drill is passed.</p></div>
+      <div class="rec"><span class="pill pilot">3 · Pilot</span><p><b>Try ISO 42001 (AI) without certifying.</b> Apply it to industrial AI and the customer configurator, then decide on certification at month 12.</p></div>
     </div>
     <div class="stats">
       <div class="stat"><div class="n" id="sSetup"></div><div class="l" id="sSetupL"></div></div>
@@ -229,7 +284,7 @@ footer b{color:var(--primary)}
   <div class="warn"><b>Independent student analysis from public sources.</b> Porcelanosa did not take part. Internal details we could not see are our assumptions, marked (A). Its public list shows no ISO 27001 or 42001, but that is absence of evidence, not proof.</div>
 
   <h3>Where the value comes from</h3>
-  <div class="tblwrap"><table id="valueTable"><thead><tr><th>Process</th><th>Standard</th><th>Benefit and example</th></tr></thead><tbody></tbody></table></div>
+  <div class="vcards" id="valueCards"></div>
 
   <h3>What makes it hard</h3>
   <div class="cards" id="barrierCards"></div>
@@ -242,8 +297,17 @@ footer b{color:var(--primary)}
   <p class="eyebrow">The money</p>
   <h2>Set-up ≈ <span id="mSetup"></span>, running ≈ <span id="mRun"></span> a year</h2>
   <p class="small mute">Our estimates, scaled from public ranges [16][17] to a 5,000-person multi-site group.</p>
-  <div class="tblwrap"><table id="costTable"><thead><tr><th>Item</th><th class="num">Set-up, year 1 (€ k)</th><th class="num">Running a year (€ k)</th><th>Basis</th></tr></thead><tbody></tbody></table></div>
-  <div class="warn"><b>Hidden costs:</b> staff time for awareness training (5,000 × 2 h × €28 ≈ €280 k in year 1); negotiation between the brand companies over one shared system; OT work only during planned kiln stops; overlapping assurance work (CSRD limited assurance, ISO audits, AEO, customer audits) when no single data owner exists; consultant lock-in; and the risk of a “paper system”.</div>
+  <div class="vizcols">
+    <div class="viz"><h4>One-off · set-up, year 1</h4><div class="total" id="vzSetup"></div><div class="sub" id="vzSetupSub"></div><div class="stack" id="stackSetup"></div><div class="legendrows" id="legSetup"></div></div>
+    <div class="viz"><h4>Every year · running cost</h4><div class="total" id="vzRun"></div><div class="sub" id="vzRunSub"></div><div class="stack" id="stackRun"></div><div class="legendrows" id="legRun"></div></div>
+  </div>
+  <details><summary>See the line-by-line table and how each number is built</summary>
+    <div class="tblwrap"><table id="costTable"><thead><tr><th>Item</th><th class="num">Set-up, year 1 (€ k)</th><th class="num">Running a year (€ k)</th><th>Basis</th></tr></thead><tbody></tbody></table></div>
+  </details>
+  <p class="small mute" style="margin:14px 0 4px"><b>Hidden costs, not in the totals:</b></p>
+  <ul class="hidden-costs">
+    <li>Awareness training time: 5,000 × 2 h × €28 ≈ €280 k in year 1</li><li>Negotiation between the brand companies over one shared system</li><li>OT work only during planned kiln stops</li><li>Overlapping assurance work (CSRD, ISO, AEO, customer audits) without one data owner</li><li>Consultant lock-in</li><li>The risk of a “paper system”</li>
+  </ul>
 
   <h3>Break-even calculator</h3>
   <p class="small mute">Two ways to read the cost: how much of it <b>insurance</b> alone repays (fewer and shorter stoppages), and how many sales per year the certificates must <b>protect</b> to cover it.</p>
@@ -300,7 +364,7 @@ footer b{color:var(--primary)}
   </div>
 
   <h3>First 90 days</h3>
-  <div class="tblwrap"><table id="plan90"><thead><tr><th>When</th><th>Action</th><th>Owner (role)</th></tr></thead><tbody></tbody></table></div>
+  <div class="gantt"><div class="g-inner" id="gantt"></div></div>
 
   <h3>What would change our mind</h3>
   <div class="cards" id="change"></div>
@@ -381,6 +445,7 @@ const STATS = [
 ];
 const COMPANY_CARDS = [
   {k:'Who they are', body:'A family-controlled holding headquartered in Vila-real (Castellón, Spain). It makes ceramic tiles, kitchens, bathroom products and the solid-surface material Krion, and sells through its own retail network to residential, contract and retail customers.'},
+  {k:'What “brand companies” means', body:'The group is a holding of several separate companies, one per product line or brand. In our briefing they run their own quality and environment teams, so today each certificate is managed company by company. We did not find a public count of them, so we do not give a number.'},
   {k:'Management systems (public)', body:'ISO 9001, 14001, 50001, AEO, EPDs and a carbon footprint [3]. No ISO 27001 or 42001 is shown.'},
   {k:'Digital and AI', body:'AI tools in industrial processes [1]; an AI space configurator for customers [20]; ERP, e-commerce and store systems (A).'}
 ];
@@ -398,9 +463,9 @@ const BARRIERS = [
 ];
 const RISKS = ['Certificate without real change.','Ransomware reaching stores or plants before phase 2 controls.','Consultant dependence.','Buying a 42001 certificate for marketing instead of control.','Audit-saving promises not materialising (20% cap, real integration required).'];
 const PHASE_INFO = [
-  {tag:'ADOPT', t:'One group IMS: 9001 + 14001 + 50001', key:'ims', b:'Merged during the 2026 transitions; the data backbone for CSRD.', gate:null, pilot:false},
-  {tag:'ADOPT (phased)', t:'ISO 27001', key:'iso27001', b:'Phase 1: HQ IT, ERP and e-commerce, certified in 18 months. Phase 2: plants (OT) and stores.', gate:'Phase 2 starts only after phase 1 passes certification and the recovery drill meets target.', pilot:false},
-  {tag:'PILOT', t:'ISO 42001', key:'iso42001', b:'For industrial AI and the customer configurator. Certify only if the month-12 gate is met (+€60 k set-up, +€25 k a year).', gate:'Month-12 decision.', pilot:true}
+  {tag:'1 · Adopt', t:'One group IMS: 9001 + 14001 + 50001', key:'ims', b:'Merged during the 2026 transitions; the data backbone for CSRD.', gate:null, pilot:false},
+  {tag:'2 · Adopt, in two phases', t:'ISO 27001', key:'iso27001', b:'Phase 1: HQ IT, ERP and e-commerce, certified in 18 months. Phase 2: plants (OT) and stores.', gate:'Phase 2 starts only after phase 1 passes certification and the recovery drill meets target.', pilot:false},
+  {tag:'3 · Pilot', t:'ISO 42001', key:'iso42001', b:'For industrial AI and the customer configurator. Certify only if the month-12 gate is met (+€60 k set-up, +€25 k a year).', gate:'Month-12 decision.', pilot:true}
 ];
 const CONDS = [
   'A board-level sponsor and a group IMS lead at the holding, with brand quality managers reporting to them.',
@@ -413,12 +478,24 @@ const KPIS = [
   'Share of AI systems with a named owner and a completed impact assessment: 100% by month 12.'
 ];
 const TRADE = ['About €0.9 M a year buys resilience that is invisible until an incident.','Centralising the IMS reduces the brands’ autonomy.','Not certifying 42001 now gives up some early-mover marketing value.'];
+/* Gantt, first 90 days: start day, end day */
 const PLAN90 = [
-  ['Days 0–30','Appoint the board-level sponsor and the group IMS lead at the holding','CEO / holding'],
-  ['Days 0–30','Inventory current certificates, audit bodies and audit invoices per brand, to replace our €150 k audit-fee assumption','Quality director'],
-  ['Days 31–60','Request 27001 quotes for phase 1 (HQ IT, ERP, e-commerce) and run a baseline recovery drill','IT director'],
-  ['Days 61–90','First inventory of AI systems with a named owner each','AI lead']
+  {label:'Appoint the board-level sponsor and the group IMS lead', owner:'CEO / holding', s:0, e:30},
+  {label:'Inventory certificates, audit bodies and audit invoices per brand', owner:'Quality director · replaces our €150 k audit-fee assumption', s:0, e:30},
+  {label:'Request ISO 27001 quotes for phase 1 (HQ IT, ERP, e-commerce)', owner:'IT director', s:30, e:60},
+  {label:'Baseline recovery drill for ERP and e-commerce', owner:'IT director', s:30, e:60},
+  {label:'First inventory of AI systems, one named owner each', owner:'AI lead', s:60, e:90}
 ];
+const PLAN90_MS = {label:'Day 90 review: real quotes and invoices against our estimates', owner:'Group IMS lead + CFO', at:90};
+const ISO_CODES = [
+  {code:'ISO 9001', what:'Quality management', color:'--c9001', has:true, data:'2026 edition published 16 Sep 2026 [8]'},
+  {code:'ISO 14001', what:'Environmental management', color:'--c14001', has:true, data:'2026 edition published Apr 2026; transition by about May 2029 [9]'},
+  {code:'ISO 50001', what:'Energy management', color:'--c50001', has:true, data:'Declared on Porcelanosa’s own website [3]'},
+  {code:'ISO/IEC 27001', what:'Information security', color:'--c27001', has:false, data:'+34% certificates in Spain in 2025 [10]'},
+  {code:'ISO/IEC 42001', what:'AI management', color:'--c42001', has:false, data:'271 certificates worldwide, none in Spain, in 2025 [10]'}
+];
+const SHORT = ['Group IMS (9001 + 14001 + 50001)','Shorter combined audits','27001 programme: consulting, training, audits','27001 technical controls: OT, EDR, MFA, backups','27001 operation: 24/7 SOC + 3 staff','42001 pilot'];
+const SEG = ['#17475f','#4a8a5c','#6a5fa8','#8d84c6','#b6b0de','#c4593f'];
 const CHANGE = [
   {k:'Becomes WAIT', body:'US sales fall further and EBITDA must be protected, so about €0.9 M a year of running cost cannot be carried.'},
   {k:'Becomes WAIT', body:'27001 phase 1 fails certification or the recovery drill misses target: stop before the plants and stores.'},
@@ -498,7 +575,8 @@ $('#mSetup').textContent = money(SETUP); $('#mRun').textContent = money(RUN);
 STANDARDS.forEach(s => { const c = el('div','card norm', `<div class="k">${s.topic}</div><h3 style="margin-top:0">${s.name}</h3><p class="small">${s.what}</p><p class="small mute">${s.status}</p><span class="tag">${s.tag}</span>`); c.style.setProperty('--c', `var(${s.color})`); $('#normCards').append(c); });
 STATS.forEach(([n,l]) => $('#stats').append(el('div','stat', `<div class="n">${n}</div><div class="l">${l}</div>`)));
 cardList($('#companyCards'), COMPANY_CARDS);
-VALUE_ROWS.forEach(r => $('#valueTable tbody').append(el('tr','', r.map(x=>`<td>${x}</td>`).join(''))));
+ISO_CODES.forEach(c => { const e = el('div','chip', `<div class="code">${c.code}</div><div class="what">${c.what}</div><div class="data">${c.data}</div><span class="has${c.has?'':' no'}">${c.has?'Porcelanosa: shown':'Porcelanosa: not shown'}</span>`); e.style.setProperty('--c', `var(${c.color})`); $('#isoChips').append(e); });
+VALUE_ROWS.forEach(r => { const codes = (r[1].match(/\d{4,5}/g)||[]).map(n => `<i style="--c:var(--c${n})">${n}</i>`).join(''); $('#valueCards').append(el('div','vcard', `<h4>${r[0]}</h4><span class="codes">${codes}</span><p>${r[2]}</p>`)); });
 cardList($('#barrierCards'), BARRIERS);
 RISKS.forEach(r => $('#risks').append(el('li','',r)));
 COSTS.forEach(c => $('#costTable tbody').append(el('tr','', `<td>${c[0]}</td><td class="num">${kfmt(c[1])}</td><td class="num">${kfmt(c[2])}</td><td class="small">${c[3]}</td>`)));
@@ -510,7 +588,26 @@ PHASE_INFO.forEach(p => {
 CONDS.forEach(t => $('#conds').append(el('li','',t)));
 KPIS.forEach(t => $('#kpis').append(el('li','',t)));
 TRADE.forEach(t => $('#trade').append(el('li','',t)));
-PLAN90.forEach(r => $('#plan90 tbody').append(el('tr','', r.map(x=>`<td>${x}</td>`).join(''))));
+/* cost visuals */
+function stackViz(stackId, legId, col, totalId, subId, total, sub){
+  const pos = COSTS.map((c,i)=>[i,c[col]]).filter(x=>x[1]>0), gross = pos.reduce((a,x)=>a+x[1],0);
+  $(totalId).textContent = total; $(subId).textContent = sub;
+  pos.forEach(([i,v]) => { const s = el('span'); s.style.width = (v/gross*100)+'%'; s.style.background = SEG[i]; s.title = SHORT[i]+': '+money(v); $(stackId).append(s); });
+  COSTS.forEach((c,i) => { const v = c[col]; if(!v) return; $(legId).append(el('div','lrow', `<i style="background:${SEG[i]}"></i><div>${SHORT[i]}</div><b>${v<0?'saves ':''}${money(Math.abs(v))}</b>`)); });
+}
+const SAVE = -(COSTS[0][2]+COSTS[1][2]);
+stackViz('#stackSetup','#legSetup',1,'#vzSetup','#vzSetupSub', money(SETUP), `${(SETUP/1e6/REVENUE*100).toFixed(2)}% of revenue · ${(SETUP/1e6/CAPEX*100).toFixed(1)}% of 2025 capex`);
+stackViz('#stackRun','#legRun',2,'#vzRun','#vzRunSub', money(RUN), `${(RUN/1e6/EBITDA*100).toFixed(1)}% of EBITDA · net of ${money(SAVE)} of savings`);
+
+/* Gantt: first 90 days */
+(function(){
+  const g = $('#gantt'), pct = d => d/90*100+'%';
+  const ticks = [0,30,60,90].map(d => `<span style="left:${pct(d)}">Day ${d}</span>`).join('');
+  g.append(el('div','g-axis', `<div>Action · owner</div><div class="g-scale">${ticks}</div>`));
+  PLAN90.forEach(r => g.append(el('div','g-row', `<div class="g-label">${r.label}<small>${r.owner}</small></div><div class="g-track"><div class="g-bar" style="left:${pct(r.s)};width:${pct(r.e-r.s)}">Days ${r.s}–${r.e}</div></div>`)));
+  g.append(el('div','g-row', `<div class="g-label">${PLAN90_MS.label}<small>${PLAN90_MS.owner}</small></div><div class="g-track"><div class="g-ms" style="left:calc(${pct(PLAN90_MS.at)} - 8px)"></div></div>`));
+  g.append(el('div','g-note', 'Each column is 30 days. The diamond marks the review that decides whether the cost estimates hold.'));
+})();
 cardList($('#change'), CHANGE);
 SOURCES.forEach(([t,u,f]) => $('#srcList').append(el('li','', `<a href="${u}" target="_blank" rel="noopener">${t}</a>${f?`<span class="flag">check: ${f}</span>`:''}`)));
 $('#weak').innerHTML = WEAK; $('#srcCount').textContent = SOURCES.length;
