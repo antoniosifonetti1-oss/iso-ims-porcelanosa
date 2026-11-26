@@ -344,7 +344,7 @@ footer b{color:var(--primary)}
 <section class="panel" id="p-money">
   <p class="eyebrow">The money</p>
   <h2>Set-up ≈ <span id="mSetup"></span>, running ≈ <span id="mRun"></span> a year</h2>
-  <p class="small mute">Our estimates, scaled from public ranges [16][17] to a 5,000-person multi-site group.</p>
+  <p class="small mute">Our estimates, scaled from public ranges to a 5,000-person multi-site group.</p>
   <div class="vizcols">
     <div class="viz"><h4>One-off · set-up, year 1</h4><div class="total" id="vzSetup"></div><div class="sub" id="vzSetupSub"></div><div class="stack" id="stackSetup"></div><div class="legendrows" id="legSetup"></div></div>
     <div class="viz"><h4>Every year · running cost</h4><div class="total" id="vzRun"></div><div class="sub" id="vzRunSub"></div><div class="stack" id="stackRun"></div><div class="legendrows" id="legRun"></div></div>
@@ -360,7 +360,7 @@ footer b{color:var(--primary)}
   <h3>Break-even calculator</h3>
   <p class="small mute">Two ways to read the cost: how much of it <b>insurance</b> alone repays (fewer and shorter stoppages), and how many sales per year the certificates must <b>protect</b> to cover it.</p>
   <div class="calc">
-    <label>Days of stoppage in a major incident <span id="vDays"></span><small>Default 12: sector average of 11.6 days of ransomware downtime in manufacturing [21].</small></label>
+    <label>Days of stoppage in a major incident <span id="vDays"></span><small>Default 12: sector average of 11.6 days of ransomware downtime in manufacturing.</small></label>
     <input type="range" id="days" min="1" max="30" value="12">
     <label>Years counted <span id="vYrs"></span><small>Set-up once, running cost every year.</small></label>
     <input type="range" id="yrs" min="1" max="10" step="1" value="5">
@@ -369,7 +369,7 @@ footer b{color:var(--primary)}
       <input type="range" id="share" min="10" max="100" step="5" value="50">
       <label>Contribution margin on lost sales <span id="vMargin"></span><small>Assumption 35%: higher than the ~11.6% EBITDA margin, because lost sales lose price minus variable cost.</small></label>
       <input type="range" id="margin" min="10" max="60" step="5" value="35">
-      <label>Yearly probability of such an incident today <span id="vProb"></span><small>Assumption 5%: no source gives a per-company probability. Porcelanosa Houston was reportedly hit in 2022 [5].</small></label>
+      <label>Yearly probability of such an incident today <span id="vProb"></span><small>Assumption 5%: no source gives a per-company probability. Porcelanosa Houston was reportedly hit in 2022.</small></label>
       <input type="range" id="prob" min="1" max="30" step="1" value="5">
       <label>Probability reduction from the programme <span id="vRed"></span><small>Assumption 30%: controls reduce but do not remove the risk.</small></label>
       <input type="range" id="red" min="10" max="70" step="5" value="30">
@@ -388,8 +388,8 @@ footer b{color:var(--primary)}
     <ul class="small">
       <li>Set-up: €380 k + €430 k + €900 k + €90 k = €1.8 M = 0.21% of 2025 revenue (€863 M) = 1.8% of 2025 capex (€102 M).</li>
       <li>Running: −€20 k − €22.5 k + €70 k + €250 k + €560 k + €60 k = €897.5 k ≈ 0.9% of EBITDA (&gt;€100 M).</li>
-      <li>Audit saving: 15% of about €150 k of combined fees (A); the IAF MD 11 cap is 20% [16].</li>
-      <li>Scaling: a single 250-employee firm’s 27001 project costs about €85 k [17]. A group 20× larger, with OT and retail, is not linear. Our 27001 programme cost (€430 k, excluding technical controls) assumes about 5× because of shared group processes (A).</li>
+      <li>Audit saving: 15% of about €150 k of combined fees (A); the IAF MD 11 cap is 20%.</li>
+      <li>Scaling: a single 250-employee firm’s 27001 project costs about €85 k. A group 20× larger, with OT and retail, is not linear. Our 27001 programme cost (€430 k, excluding technical controls) assumes about 5× because of shared group processes (A).</li>
       <li>If 42001 certification follows: +€60 k set-up and +€25 k a year (decision at month 12).</li>
     </ul>
   </details>
@@ -435,7 +435,7 @@ footer b{color:var(--primary)}
 
   <h3>Status in November 2026</h3>
   <div class="cards" id="normCards"></div>
-  <div class="warn"><b>Hype to discount:</b> (a) integration cuts combined audit time by at most 20% [16]; (b) ISO 42001 does not give AI Act conformity, a role that belongs to EN 18286 [11][12]; (c) ISO 9001 and 14001 do nothing for cyber security.</div>
+  <div class="warn"><b>Hype to discount:</b> (a) integration cuts combined audit time by at most 20%; (b) ISO 42001 does not give AI Act conformity, a role that belongs to EN 18286; (c) ISO 9001 and 14001 do nothing for cyber security.</div>
 
   <h3>Quiz<span class="count">6</span></h3>
   <div id="quizBox"></div>
@@ -468,7 +468,7 @@ const REVENUE = 863, EBITDA = 100, CAPEX = 102, DAYS_YEAR = 330;
 /* [item, set-up €, running €/yr, basis] */
 const COSTS = [
   ['Group IMS for 9001+14001 (with 2026 transitions)', 380000, -20000, 'Consultants 120k, IMS/GRC platform 80k, internal team 180k; then licences +40k, fewer duplicated roles −60k'],
-  ['Audit-time reduction (15% of ~€150k combined fees (A))', 0, -22500, 'IAF MD 11 cap is 20% [16]'],
+  ['Audit-time reduction (15% of ~€150k combined fees (A))', 0, -22500, 'IAF MD 11 cap is 20%'],
   ['27001 programme: consulting, training of 5,000 staff, audits', 430000, 70000, '250k + 120k + 60k; surveillance audits and training'],
   ['27001 technical controls: OT segmentation, EDR, MFA, offline backups', 900000, 250000, 'Licences; our estimate (A)'],
   ['27001 operation: 24/7 SOC/MDR + 3 security staff', 0, 560000, '350k + 210k'],
@@ -476,10 +476,10 @@ const COSTS = [
 ];
 const GROUPS = { ims:[0,1], iso27001:[2,3,4], iso42001:[5] };
 const STANDARDS = [
-  {color:'--c9001', name:'ISO 9001', topic:'Quality', what:'Customer requirements, product conformity, complaints, supplier control.', status:'ISO 9001:2026 published on 16 September 2026; about three years to transition [8].', tag:'Existing certificate'},
-  {color:'--c14001', name:'ISO 14001', topic:'Environment', what:'Environmental aspects, compliance obligations, emissions, waste.', status:'ISO 14001:2026 published in April 2026; transition by about May 2029 [9].', tag:'Existing certificate'},
-  {color:'--c27001', name:'ISO/IEC 27001', topic:'Information security', what:'Risk-based controls for confidentiality, integrity and availability.', status:'Spain’s fastest-growing standard, +34% in 2025 [10]. None shown by Porcelanosa.', tag:'Adopt, phased'},
-  {color:'--c42001', name:'ISO/IEC 42001', topic:'AI management', what:'Governance of AI systems: inventory, owners, impact assessment, transparency.', status:'271 certificates worldwide and none in Spain in 2025 [10]. None shown by Porcelanosa.', tag:'Pilot'}
+  {color:'--c9001', name:'ISO 9001', topic:'Quality', what:'Customer requirements, product conformity, complaints, supplier control.', status:'ISO 9001:2026 published on 16 September 2026; about three years to transition.', tag:'Existing certificate'},
+  {color:'--c14001', name:'ISO 14001', topic:'Environment', what:'Environmental aspects, compliance obligations, emissions, waste.', status:'ISO 14001:2026 published in April 2026; transition by about May 2029.', tag:'Existing certificate'},
+  {color:'--c27001', name:'ISO/IEC 27001', topic:'Information security', what:'Risk-based controls for confidentiality, integrity and availability.', status:'Spain’s fastest-growing standard, +34% in 2025. None shown by Porcelanosa.', tag:'Adopt, phased'},
+  {color:'--c42001', name:'ISO/IEC 42001', topic:'AI management', what:'Governance of AI systems: inventory, owners, impact assessment, transparency.', status:'271 certificates worldwide and none in Spain in 2025. None shown by Porcelanosa.', tag:'Pilot'}
 ];
 const GRID_ROWS = [
   ['4 Context', 'Context, stakeholders, scope: one analysis for the whole group'],
@@ -493,32 +493,32 @@ const GRID_ROWS = [
 const SEP_TEXT = ['Own context analysis','Own policy and roles','Own risk register','Own training and documents','','Own audit and review','Own corrective actions'];
 const IMS_NOTE = {
   sep: 'Each standard run on its own: four policies, four risk registers, four audit programmes. The grey blocks are the same kind of work done four times.',
-  int: 'Integrated: the shared clauses are managed once. Each standard still adds its own requirements in clause 8 and a few extras elsewhere. The realistic saving in audit time is at most 20% [16].'
+  int: 'Integrated: the shared clauses are managed once. Each standard still adds its own requirements in clause 8 and a few extras elsewhere. The realistic saving in audit time is at most 20%.'
 };
 const STATS = [
-  ['€863 M','2025 revenue; EBITDA above €100 M [1]'],
-  ['5,000+','Staff: 2,900 in Castellón, 640 elsewhere in Spain, 1,473 abroad [2]'],
-  ['200+','Own stores, and 1,000+ points of sale worldwide [4]'],
-  ['€102 M','Capex in 2025 [2]'],
-  ['4.29 GWh','New solar plant [7]']
+  ['€863 M','2025 revenue; EBITDA above €100 M'],
+  ['5,000+','Staff: 2,900 in Castellón, 640 elsewhere in Spain, 1,473 abroad'],
+  ['200+','Own stores, and 1,000+ points of sale worldwide'],
+  ['€102 M','Capex in 2025'],
+  ['4.29 GWh','New solar plant']
 ];
 const COMPANY_CARDS = [
   {k:'Who they are', body:'A family-controlled holding headquartered in Vila-real (Castellón, Spain). It makes ceramic tiles, kitchens, bathroom products and the solid-surface material Krion, and sells through its own retail network to residential, contract and retail customers.'},
   {k:'What “brand companies” means', body:'The group is a holding of several separate companies, one per product line or brand. In our briefing they run their own quality and environment teams, so today each certificate is managed company by company. We did not find a public count of them, so we do not give a number.'},
-  {k:'Management systems (public)', body:'ISO 9001, 14001, AEO, EPDs and a carbon footprint [3]. No ISO 27001 or 42001 is shown.'},
-  {k:'Digital and AI', body:'AI tools in industrial processes [1]; an AI space configurator for customers [20]; ERP, e-commerce and store systems (A).'}
+  {k:'Management systems (public)', body:'ISO 9001, 14001, AEO, EPDs and a carbon footprint. No ISO 27001 or 42001 is shown.'},
+  {k:'Digital and AI', body:'AI tools in industrial processes; an AI space configurator for customers; ERP, e-commerce and store systems (A).'}
 ];
 const VALUE_ROWS = [
   ['Certification across brands and plants','9001 + 14001','One multi-site IMS: one manual, audit programme and risk register instead of parallel systems per company. Fewer audit days and less duplicated internal auditing.'],
-  ['CSRD reporting (in scope: more than 1,000 staff and more than €450 M) [14]','14001','Energy and CO₂ data that is already managed and internally audited becomes the evidence trail for climate disclosures. Scope 1+2 footprint fell 16.7% in 2024 [6], and future reductions must be auditable.'],
-  ['Kilns, energy and new solar capacity','14001','One set of KPIs per plant (gas, kWh, CO₂, scrap). The 1,843 t of CO₂ a year avoided by the solar plant [7] becomes a tracked objective, and one change procedure (14001:2026 §6.3) covers new equipment.'],
-  ['ERP, e-commerce, 200+ stores, architects’ project files','27001','Protects customer data (GDPR) and continuity. Our estimate: one day of full stoppage puts up to €2.6 M of revenue at risk (€863 M ÷ 330 days, an upper bound). A ransomware group claimed an attack on the US subsidiary in 2022 [5]; Porcelanosa has not confirmed it. Complements the existing AEO supply-chain security status.'],
-  ['Industrial AI and the customer configurator','42001','An AI inventory, named owners, impact assessments and customer transparency (AI Act transparency duties [13]). Controls vendor “black-box” AI, a risk the sector’s technology institute itself flags [19].']
+  ['CSRD reporting (in scope: more than 1,000 staff and more than €450 M)','14001','Energy and CO₂ data that is already managed and internally audited becomes the evidence trail for climate disclosures. Scope 1+2 footprint fell 16.7% in 2024, and future reductions must be auditable.'],
+  ['Kilns, energy and new solar capacity','14001','One set of KPIs per plant (gas, kWh, CO₂, scrap). The 1,843 t of CO₂ a year avoided by the solar plant becomes a tracked objective, and one change procedure (14001:2026 §6.3) covers new equipment.'],
+  ['ERP, e-commerce, 200+ stores, architects’ project files','27001','Protects customer data (GDPR) and continuity. Our estimate: one day of full stoppage puts up to €2.6 M of revenue at risk (€863 M ÷ 330 days, an upper bound). A ransomware group claimed an attack on the US subsidiary in 2022; Porcelanosa has not confirmed it. Complements the existing AEO supply-chain security status.'],
+  ['Industrial AI and the customer configurator','42001','An AI inventory, named owners, impact assessments and customer transparency (AI Act transparency duties). Controls vendor “black-box” AI, a risk the sector’s technology institute itself flags.']
 ];
 const BARRIERS = [
-  {k:'Management', body:'Needs sponsorship from the family owners and the holding: ISO 9001:2026 makes quality culture a leadership duty [8]. The budget competes with market pressure, as US sales fell in 2025 and EBITDA must be protected. Regulation is still moving: Spain had no NIS2 transposition law as of October 2026 [15], the AI Act’s high-risk dates moved in July 2026 [13], and CSRD scope changed with Omnibus I [14].'},
+  {k:'Management', body:'Needs sponsorship from the family owners and the holding: ISO 9001:2026 makes quality culture a leadership duty. The budget competes with market pressure, as US sales fell in 2025 and EBITDA must be protected. Regulation is still moving: Spain had no NIS2 transposition law as of October 2026, the AI Act’s high-risk dates moved in July 2026, and CSRD scope changed with Omnibus I.'},
   {k:'Organisation', body:'Several brand companies run their own quality and environment teams, so a group IMS owner must be appointed and authority shifts to the holding. 200+ stores and foreign subsidiaries bring different laws, languages and IT maturity. Shift work limits training time. Security and AI-governance talent is scarce in Castellón, and accredited 42001 auditors are few.'},
-  {k:'Technology', body:'Many factories with OT networks and kiln controllers that are hard to patch (A). ERP, store and e-commerce systems differ by company and country (A), so one IMS/GRC platform must integrate with all of them. AI tools come from vendors, so model updates and training data sit outside group control [19].'}
+  {k:'Technology', body:'Many factories with OT networks and kiln controllers that are hard to patch (A). ERP, store and e-commerce systems differ by company and country (A), so one IMS/GRC platform must integrate with all of them. AI tools come from vendors, so model updates and training data sit outside group control.'}
 ];
 const RISKS = ['Certificate without real change.','Ransomware reaching stores or plants before phase 2 controls.','Consultant dependence.','Buying a 42001 certificate for marketing instead of control.','Audit-saving promises not materialising (20% cap, real integration required).'];
 const PHASE_INFO = [
@@ -547,10 +547,10 @@ const PLAN90 = [
 ];
 const PLAN90_MS = {label:'Day 90 review: real quotes and invoices against our estimates', owner:'Group IMS lead + CFO', at:90};
 const ISO_CODES = [
-  {code:'ISO 9001', what:'Quality management', color:'--c9001', has:true, data:'2026 edition published 16 Sep 2026 [8]'},
-  {code:'ISO 14001', what:'Environmental management', color:'--c14001', has:true, data:'2026 edition published Apr 2026; transition by about May 2029 [9]'},
-  {code:'ISO/IEC 27001', what:'Information security', color:'--c27001', has:false, data:'+34% certificates in Spain in 2025 [10]'},
-  {code:'ISO/IEC 42001', what:'AI management', color:'--c42001', has:false, data:'271 certificates worldwide, none in Spain, in 2025 [10]'}
+  {code:'ISO 9001', what:'Quality management', color:'--c9001', has:true, data:'2026 edition published 16 Sep 2026'},
+  {code:'ISO 14001', what:'Environmental management', color:'--c14001', has:true, data:'2026 edition published Apr 2026; transition by about May 2029'},
+  {code:'ISO/IEC 27001', what:'Information security', color:'--c27001', has:false, data:'+34% certificates in Spain in 2025'},
+  {code:'ISO/IEC 42001', what:'AI management', color:'--c42001', has:false, data:'271 certificates worldwide, none in Spain, in 2025'}
 ];
 const SHORT = ['Group IMS (9001 + 14001)','Shorter combined audits','27001 programme: consulting, training, audits','27001 technical controls: OT, EDR, MFA, backups','27001 operation: 24/7 SOC + 3 staff','42001 pilot'];
 const SEG = ['#17475f','#4a8a5c','#6a5fa8','#8d84c6','#b6b0de','#c4593f'];
@@ -582,13 +582,13 @@ const SOURCES = [
   ['Valencia Plaza. Novedades de Porcelanosa en su Muestra Internacional (AI configurator)','https://valenciaplaza.com/valenciaplaza/lainnovacionylatecnologiadesvelanlasnovedadesdeporcelanosaensumuestrainternacional',''],
   ['Comparitech. Ransomware attacks on manufacturers: average downtime 11.6 days (calculator default)','https://comparitech.com/blog/information-security/ransomware-manufacturing-companies','not in the PDF yet; all manufacturers, 2018–Oct 2024']
 ];
-const WEAK = '<div class="warn-title">Our own considerations</div><p class="warn-sub">Stated for honesty.</p>These are our judgements about where the evidence is weak or contested, not established facts. (a) “ISO certification improves financial performance” is contested: reviews find positive, neutral and negative effects, plus a selection effect [18], so we do not count financial uplift as a benefit. (b) “ISO 42001 = AI Act compliance” is not supported [11][12]. (c) All internal details (A) and cost figures are our estimates; vendor price ranges vary widely and come from sellers of compliance services [17]. (d) We found no public evidence on whether customers require ISO 27001.';
+const WEAK = '<div class="warn-title">Our own considerations</div><p class="warn-sub">Stated for honesty.</p>These are our judgements about where the evidence is weak or contested, not established facts. (a) “ISO certification improves financial performance” is contested: reviews find positive, neutral and negative effects, plus a selection effect, so we do not count financial uplift as a benefit. (b) “ISO 42001 = AI Act compliance” is not supported. (c) All internal details (A) and cost figures are our estimates; vendor price ranges vary widely and come from sellers of compliance services. (d) We found no public evidence on whether customers require ISO 27001.';
 const QUIZ = [
   {q:'What makes it possible to run 9001, 14001, 27001 and 42001 as one system?', o:['Same national publisher','Shared Harmonized Structure (clauses 4–10)','Identical Annex A lists','EU requires joint audits'], a:1, e:'All recent ISO management system standards share the same clause structure and core text, so one manual, internal audit and management review can serve all of them.'},
-  {q:'Which edition of ISO 14001 is current in November 2026?', o:['2015 unchanged','2015 + Amd 1:2024','2026, published April 2026','2027 draft'], a:2, e:'Published 15 April 2026, replacing 2015 + the 2024 climate amendment; 2015 certificates must transition by about May 2029 [9].'},
-  {q:'With a genuinely integrated system, by how much can combined audit time be reduced?', o:['Up to 20%','50%','75%','Not at all'], a:0, e:'IAF MD 11 allows up to 20% depending on the level of integration. It is a ceiling, not a guaranteed discount [16].'},
-  {q:'Does an ISO/IEC 42001 certificate give presumption of conformity with the EU AI Act?', o:['Yes, all systems','Yes, high-risk only','No; EN 18286 is the first harmonised standard','No, the Act was repealed'], a:2, e:'EN 18286 (QMS for high-risk AI providers) was cited in October 2026. 42001 is not part of EU harmonisation [11][12].'},
-  {q:'Porcelanosa has 5,000+ employees and €863 M revenue. Does the revised CSRD apply?', o:['No, CSRD was cancelled','No, only listed companies','Yes: it exceeds both thresholds (more than 1,000 employees and more than €450 M)','Only if 14001-certified'], a:2, e:'Omnibus I narrowed CSRD to companies above both thresholds [14]. Porcelanosa exceeds both, which makes audited 14001 data valuable.'},
+  {q:'Which edition of ISO 14001 is current in November 2026?', o:['2015 unchanged','2015 + Amd 1:2024','2026, published April 2026','2027 draft'], a:2, e:'Published 15 April 2026, replacing 2015 + the 2024 climate amendment; 2015 certificates must transition by about May 2029.'},
+  {q:'With a genuinely integrated system, by how much can combined audit time be reduced?', o:['Up to 20%','50%','75%','Not at all'], a:0, e:'IAF MD 11 allows up to 20% depending on the level of integration. It is a ceiling, not a guaranteed discount.'},
+  {q:'Does an ISO/IEC 42001 certificate give presumption of conformity with the EU AI Act?', o:['Yes, all systems','Yes, high-risk only','No; EN 18286 is the first harmonised standard','No, the Act was repealed'], a:2, e:'EN 18286 (QMS for high-risk AI providers) was cited in October 2026. 42001 is not part of EU harmonisation.'},
+  {q:'Porcelanosa has 5,000+ employees and €863 M revenue. Does the revised CSRD apply?', o:['No, CSRD was cancelled','No, only listed companies','Yes: it exceeds both thresholds (more than 1,000 employees and more than €450 M)','Only if 14001-certified'], a:2, e:'Omnibus I narrowed CSRD to companies above both thresholds. Porcelanosa exceeds both, which makes audited 14001 data valuable.'},
   {q:'Which indicator best reveals a “paper system”?', o:['Number of procedures','Corrective actions open for more than 90 days','Certificates on the wall','Pages in the manual'], a:1, e:'A working system closes the problems its audits find. A growing backlog shows the certificate is not changing how the firm operates.'}
 ];
 
@@ -641,7 +641,7 @@ $('#mSetup').textContent = money(SETUP); $('#mRun').textContent = money(RUN);
 STANDARDS.forEach(s => { const c = el('div','card norm', `<div class="k">${s.topic}</div><h3 style="margin-top:0">${s.name}</h3><p class="small">${s.what}</p><p class="small mute">${s.status}</p><span class="tag">${s.tag}</span>`); c.style.setProperty('--c', `var(${s.color})`); $('#normCards').append(c); });
 STATS.forEach(([n,l]) => $('#stats').append(el('div','stat', `<div class="n">${n}</div><div class="l">${l}</div>`)));
 cardList($('#companyCards'), COMPANY_CARDS);
-ISO_CODES.forEach(c => { const e = el('div','chip', `<div class="code">${c.code}</div><div class="what">${c.what}</div><div class="data">${c.data}</div><span class="has${c.has?'':' no'}">${c.has?'Porcelanosa: shown':'Porcelanosa: not shown'}</span>`); e.style.setProperty('--c', `var(${c.color})`); $('#isoChips').append(e); });
+ISO_CODES.forEach(c => { const e = el('div','chip', `<div class="code">${c.code}</div><div class="what">${c.what}</div><div class="data">${c.data}</div>`); e.style.setProperty('--c', `var(${c.color})`); $('#isoChips').append(e); });
 VALUE_ROWS.forEach(r => { const codes = (r[1].match(/\d{4,5}/g)||[]).map(n => `<i style="--c:var(--c${n})">${n}</i>`).join(''); $('#valueCards').append(el('div','vcard', `<h4>${r[0]}</h4><span class="codes">${codes}</span><p>${r[2]}</p>`)); });
 cardList($('#barrierCards'), BARRIERS);
 RISKS.forEach(r => $('#risks').append(el('li','',r)));
