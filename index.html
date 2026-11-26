@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ISO Integrated Management Systems at Porcelanosa</title>
-<meta name="description" content="Should Porcelanosa integrate ISO 9001, 14001 and 50001, add ISO 27001 and pilot ISO 42001 (AI)? A decision brief with costs, barriers, a break-even calculator and a quiz.">
+<meta name="description" content="Should Porcelanosa integrate ISO 9001, 14001 and 50001, add ISO 27001 and pilot ISO 42001 (AI)? A decision brief with a staged budget, justified estimates, a break-even calculator and a quiz.">
 <meta property="og:title" content="ISO Integrated Management Systems at Porcelanosa">
-<meta property="og:description" content="Decision brief: ADOPT, in three phases. Costs, barriers, break-even calculator and quiz.">
+<meta property="og:description" content="Decision brief: ADOPT in three gated phases. Staged budget, justified estimates, break-even calculator and quiz.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231a1a1a'/%3E%3Crect x='10' y='10' width='20' height='20' fill='%23f5c518'/%3E%3Crect x='34' y='10' width='20' height='20' fill='%23fff'/%3E%3Crect x='10' y='34' width='20' height='20' fill='%23fff'/%3E%3Crect x='34' y='34' width='20' height='20' fill='%23f5c518'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,6 +48,8 @@ p{margin:0 0 14px}
 .small{font-size:14px}
 .verdict{background:var(--yellow-bg);color:var(--yellow-ink);border-left:6px solid var(--yellow);padding:18px 22px;border-radius:4px;margin:26px 0}
 .verdict b.tag{display:inline-block;background:var(--yellow);color:#1a1a1a;padding:2px 10px;border-radius:3px;font-size:13px;letter-spacing:.08em;margin-right:8px}
+.verdict ul{margin:10px 0 0;padding-left:20px}
+.verdict li{margin-bottom:6px}
 .warn{background:var(--yellow-bg);color:var(--yellow-ink);border:1px dashed var(--yellow);padding:14px 18px;border-radius:4px;margin:18px 0;font-size:15.5px}
 .cards{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:18px 0}
 .card{border:1px solid var(--line);border-radius:8px;padding:16px 18px;background:var(--bg)}
@@ -69,13 +71,14 @@ p{margin:0 0 14px}
 .iso-grid .spec{border:1.5px solid}
 .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13.5px;color:var(--mute);margin-top:8px}
 .legend i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-1px}
-/* norms */
 .norm{border-top:5px solid var(--c);}
 .norm .tag{display:inline-block;font-size:11.5px;font-weight:700;background:var(--bg2);padding:2px 8px;border-radius:3px;margin-top:6px}
 /* tables */
 table{border-collapse:collapse;width:100%;font-size:15px;margin:14px 0}
 th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
 th{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);border-bottom:2px solid var(--ink)}
+td.num,th.num{text-align:right;white-space:nowrap}
+tr.sub td{font-weight:800;background:var(--bg2)}
 .tblwrap{overflow-x:auto}
 /* cost bars */
 .bar{margin:14px 0}
@@ -92,17 +95,25 @@ th{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mu
 .phase{border:1.5px solid var(--ink);border-radius:8px;padding:16px 18px}
 .phase.pilot{border-style:dashed}
 .phase .when{font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.phase .budget{font-size:22px;font-weight:800;margin:4px 0 6px}
+.phase .gate{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:14px}
+.phase .gate b{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+details{border:1px solid var(--line);border-radius:8px;padding:12px 16px;margin:14px 0}
+summary{cursor:pointer;font-weight:700}
 /* calculator */
 .calc{border:1.5px solid var(--ink);border-radius:10px;padding:20px 22px;margin:22px 0;background:var(--bg)}
+.calc .cols{display:grid;gap:0 32px;grid-template-columns:1fr 1fr}
+@media(max-width:700px){.calc .cols{grid-template-columns:1fr}}
 .calc label{display:block;font-weight:600;font-size:14.5px;margin:14px 0 2px}
 .calc label span{float:right;font-weight:800}
+.calc label small{display:block;font-weight:400;color:var(--mute);font-size:12.5px;line-height:1.35}
 .calc input[type=range]{width:100%;accent-color:var(--ink)}
 .calc select{font:inherit;padding:6px 8px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
-.calc .out{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-top:20px}
+.calc .out{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));margin-top:20px}
 .calc .res{background:var(--bg2);border-radius:8px;padding:12px 14px}
-.calc .res .n{font-size:24px;font-weight:800;line-height:1.15}
+.calc .res .n{font-size:23px;font-weight:800;line-height:1.15}
 .calc .res .l{font-size:12.5px;color:var(--mute)}
-.calc .verdict-line{margin-top:14px;font-weight:700}
+.calc .verdict-line{margin-top:16px;font-weight:700}
 .pos{color:var(--ok)} .neg{color:var(--bad)}
 /* quiz */
 .q{border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:14px 0}
@@ -115,12 +126,10 @@ th{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mu
 .q.done .why{display:block}
 .score{font-weight:800;font-size:20px;margin:16px 0}
 .btn{font:inherit;font-weight:700;background:var(--ink);color:var(--bg);border:0;border-radius:6px;padding:9px 16px;cursor:pointer}
-/* sources */
 ol.src{padding-left:20px;font-size:15px}
 ol.src li{margin-bottom:8px}
 .flag{display:inline-block;font-size:11px;font-weight:700;background:var(--yellow);color:#1a1a1a;border-radius:3px;padding:1px 6px;margin-left:6px;vertical-align:1px}
 footer{border-top:1px solid var(--line);margin-top:56px;padding:26px 0 50px;font-size:14px;color:var(--mute)}
-.todo{background:var(--yellow);color:#1a1a1a;padding:0 5px;border-radius:2px}
 @media(max-width:700px){
   body{font-size:16px}
   .iso-grid{min-width:0;grid-template-columns:1fr}
@@ -133,43 +142,28 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:26px 0 50px;font
 
 <nav><div class="wrap">
   <b>ISO IMS</b>
-  <a href="#intro">Question</a><a href="#structure">Common structure</a><a href="#norms">The norms</a><a href="#company">Porcelanosa</a><a href="#value">Value</a><a href="#costs">Costs</a><a href="#barriers">Barriers</a><a href="#reco">Recommendation</a><a href="#quiz">Quiz</a><a href="#sources">Sources</a>
+  <a href="#intro">The ask</a><a href="#company">Porcelanosa</a><a href="#value">Value</a><a href="#costs">Costs</a><a href="#basis">Why these numbers</a><a href="#reco">Plan</a><a href="#barriers">Barriers</a><a href="#structure">Background</a><a href="#quiz">Quiz</a><a href="#sources">Sources</a>
 </div></nav>
 
 <main class="wrap">
 
-<!-- 1 -->
+<!-- 1 · the ask -->
 <section id="intro">
   <p class="eyebrow">Decision brief · Integrated management systems (9001 / 14001 / 27001 / 42001)</p>
-  <h1>Should Porcelanosa run quality, environment, energy, security and AI under one management system?</h1>
-  <p class="lead">An <b>integrated management system (IMS)</b> is one set of policies, risk registers, processes, audits and management reviews that serves several ISO standards at once, instead of one separate system per certificate.</p>
-  <p>It works because ISO management-system standards share the same skeleton (the "harmonized structure", clauses 4 to 10). Only a few requirements are specific to each standard. Integrating means managing the shared part once and the specific part where it belongs.</p>
+  <h1>Approve phase 1 now: one management system for Porcelanosa. Release the rest only if the gates are met.</h1>
+  <p class="lead">An <b>integrated management system (IMS)</b> runs several ISO standards on one set of policies, risk registers, audits and management reviews, instead of one separate system per certificate.</p>
   <div class="verdict">
-    <b class="tag">ADOPT · IN THREE PHASES</b>
-    <b>1)</b> Merge ISO 9001, 14001 and 50001 into one group-wide system while the 2026 editions force a transition anyway. <b>2)</b> Add ISO 27001 within 24 months, starting with central IT, e-commerce and the Castellón plants. <b>3)</b> Run ISO 42001 as a pilot without certification, on the AI configurator and process AI tools.
-    <br><br><b>The catch:</b> year 1 costs about €1.9–3.1 M but audit savings are only about €50 k a year. The value is protecting continuity and customer trust, not efficiency.
+    <b class="tag">ADOPT · IN THREE GATED PHASES</b> <b>What we ask the board to decide</b>
+    <ul>
+      <li><b>Approve now (phase 1, 12 months):</b> <span id="askP1"></span> to merge ISO 9001, 14001 and 50001 into one group-wide system, with one group owner, during the transition to the 2026 editions.</li>
+      <li><b>Budgeted but not released:</b> phase 2, ISO 27001 for central IT, e-commerce and the Castellón plants (<span id="askP2"></span>), and phase 3, an ISO 42001 pilot without certification (<span id="askP3"></span>). Each is released only when the previous gate is met.</li>
+      <li><b>Total if everything goes ahead:</b> <span id="askTot"></span> over about 24 months, i.e. 0.2–0.35% of 2025 revenue.</li>
+    </ul>
+    <p style="margin:14px 0 0"><b>The honest catch:</b> audit savings are only about €50 k a year and will not pay for this. It pays back if the certificates protect about <b>1.2% of export sales</b> or avoid one multi-week stoppage. We did not find public proof that customers require ISO 27001, so the first 30 days test exactly that.</p>
   </div>
 </section>
 
-<!-- 1b -->
-<section id="structure">
-  <p class="eyebrow">The core idea</p>
-  <h2>Six clause rows are identical across standards; only clause 8 differs, so they can be merged</h2>
-  <p>Grey rows span every standard: one policy, one risk register, one internal audit, one management review. The coloured cells in clause 8 are the specific operational requirements that stay separate.</p>
-  <div class="gridwrap"><div class="iso-grid" id="isoGrid"></div></div>
-  <div class="legend"><span><i style="background:var(--common)"></i>Shared once (harmonized structure)</span><span><i style="background:var(--c9001)"></i>Standard-specific</span></div>
-  <p class="small mute" style="margin-top:10px">ISO 50001 (energy), which Porcelanosa already declares, plugs into the same structure and is included in the integration.</p>
-</section>
-
-<!-- 2 -->
-<section id="norms">
-  <p class="eyebrow">The standards in 2026</p>
-  <h2>Four standards, four different jobs and four different maturity levels</h2>
-  <div class="cards" id="normCards"></div>
-  <div class="warn"><b>Capability vs. hype.</b> A certificate proves that a management system exists and is audited; it does not prove that a product, plant or AI model is good. In particular, <b>ISO 42001 certification is not compliance with the EU AI Act</b>: the standard is a management framework, the law sets legal obligations. It helps to organise the evidence, nothing more.</div>
-</section>
-
-<!-- 3 -->
+<!-- 3 · company -->
 <section id="company">
   <p class="eyebrow">Reference organisation</p>
   <h2>Porcelanosa: a Castellón-based ceramics group, export-driven, with 7 brands and 200+ stores</h2>
@@ -178,48 +172,91 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:26px 0 50px;font
   <div class="warn"><b>Hypotheses, not facts.</b> Porcelanosa does not publish its internal set-up. We assume that each brand runs its own systems, and that there is no group-wide ISO 27001 (we found no public trace of one). Our conclusions hold even if some of these certificates already exist: the main gain is integration, governance and a single owner for AI risk.</div>
 </section>
 
-<!-- 4 -->
+<!-- 4 · value -->
 <section id="value">
   <p class="eyebrow">Business value</p>
   <h2>Value comes process by process, not from the certificate itself</h2>
-  <div class="tblwrap"><table id="valueTable"><thead><tr><th>Process</th><th>What changes</th><th>Estimated effect</th></tr></thead><tbody></tbody></table></div>
-  <p class="small mute">Effects are team estimates built from the structure of the standards and Porcelanosa's public profile; they are not company data.</p>
+  <div class="tblwrap"><table id="valueTable"><thead><tr><th>Process</th><th>What changes</th><th>Estimated effect and basis</th></tr></thead><tbody></tbody></table></div>
 </section>
 
-<!-- 5 -->
+<!-- 5 · costs -->
 <section id="costs">
   <p class="eyebrow">Costs</p>
-  <h2>Year 1 costs ≈ €1.9–3.1 M; audit savings only ≈ €50 k a year</h2>
+  <h2>Set-up costs ≈ <span id="totRange"></span>; audit savings only ≈ €50 k a year</h2>
   <div class="compare">
-    <div class="big"><div class="n">€1.9–3.1 M</div><div class="small mute">Year-1 set-up and certification, i.e. 0.2–0.35% of 2025 revenue (€863 M)</div></div>
+    <div class="big"><div class="n" id="totBig"></div><div class="small mute">Total set-up over ~24 months, 0.2–0.35% of 2025 revenue (€863 M). Only phase 1 needs approval now.</div></div>
     <div class="big"><div class="n">≈ €50 k / yr</div><div class="small mute">Audit savings from combined audits. This is not what pays for the project.</div></div>
   </div>
   <div id="costBars"></div>
-  <p class="small mute">Cost bands are team estimates for a group of ~5,000 people and ~10 sites, not quotes. Hidden costs: management time, change fatigue on shifts, and keeping the system alive after the first audit.</p>
+  <p class="small mute">Every figure is built from explicit drivers in the next section, not from quotes. Hidden costs: management time, change fatigue on shifts, and keeping the system alive after the first audit.</p>
 
-  <h3 style="margin-top:34px">5b · Break-even: how many avoided stoppage days repay year 1?</h3>
-  <p>The honest case for ADOPT is insurance: one avoided ransomware or IT outage at the Castellón plants. Change the assumptions and see when it pays back.</p>
+  <h3 style="margin-top:34px" id="calc">5b · Break-even calculator: what has to be true for this to pay back?</h3>
+  <p>Two separate arguments, kept apart on purpose. <b>Insurance:</b> the programme lowers the chance and length of a plant or IT stoppage. <b>Customer access:</b> certificates keep export customers who ask for them. Change the assumptions and see which one carries the case.</p>
   <div class="calc">
-    <label>Days of stoppage avoided <span id="vDays"></span></label>
-    <input type="range" id="days" min="1" max="30" value="7">
-    <label>Share of group output halted <span id="vShare"></span></label>
-    <input type="range" id="share" min="10" max="100" step="5" value="50">
-    <label>Contribution margin on lost sales <span id="vMargin"></span></label>
-    <input type="range" id="margin" min="10" max="60" step="5" value="35">
-    <label>Year-1 cost scenario</label>
-    <select id="scen"><option value="1.9">Low · €1.9 M</option><option value="2.5" selected>Mid · €2.5 M</option><option value="3.1">High · €3.1 M</option></select>
+    <div class="cols">
+      <div>
+        <label>Days of stoppage in a major incident <span id="vDays"></span><small>Default 12: sector average of 11.6 days for ransomware downtime in manufacturing (Comparitech, 2018–Oct 2024).</small></label>
+        <input type="range" id="days" min="1" max="30" value="12">
+        <label>Share of group output halted <span id="vShare"></span><small>Assumption: an attack on central IT/ERP stops order processing and logistics group-wide and some plants, not all.</small></label>
+        <input type="range" id="share" min="10" max="100" step="5" value="50">
+        <label>Contribution margin on lost sales <span id="vMargin"></span><small>Assumption 35%. Lost sales lose contribution margin (price minus variable cost), higher than the ~11.6% EBITDA margin (€100 M ÷ €863 M).</small></label>
+        <input type="range" id="margin" min="10" max="60" step="5" value="35">
+      </div>
+      <div>
+        <label>Yearly probability of such an incident today <span id="vProb"></span><small>Assumption 5%: manufacturing is the most targeted sector for ransomware, but no source gives a per-company probability.</small></label>
+        <input type="range" id="prob" min="1" max="30" step="1" value="5">
+        <label>Reduction of that probability from the programme <span id="vRed"></span><small>Assumption 30%: controls reduce but do not remove the risk.</small></label>
+        <input type="range" id="red" min="10" max="70" step="5" value="30">
+        <label>Years counted <span id="vYrs"></span></label>
+        <input type="range" id="yrs" min="1" max="10" step="1" value="5">
+        <label>Set-up cost scenario</label>
+        <select id="scen"></select>
+      </div>
+    </div>
     <div class="out">
-      <div class="res"><div class="n" id="rRev"></div><div class="l">Revenue lost per stoppage</div></div>
-      <div class="res"><div class="n" id="rLoss"></div><div class="l">Margin lost (what we avoid)</div></div>
-      <div class="res"><div class="n" id="rCover"></div><div class="l">Share of year-1 cost covered</div></div>
-      <div class="res"><div class="n" id="rBE"></div><div class="l">Break-even stoppage days</div></div>
+      <div class="res"><div class="n" id="rLoss"></div><div class="l">Margin lost in one major stoppage</div></div>
+      <div class="res"><div class="n" id="rOnce"></div><div class="l">Set-up cost covered if one such event is avoided</div></div>
+      <div class="res"><div class="n" id="rEV"></div><div class="l">Expected yearly benefit (probability × reduction × loss)</div></div>
+      <div class="res"><div class="n" id="rEVc"></div><div class="l" id="rEVl"></div></div>
+      <div class="res"><div class="n" id="rProt"></div><div class="l">Export sales the certificates must protect to repay the full cost</div></div>
+      <div class="res"><div class="n" id="rPct"></div><div class="l">…as a share of the 70%+ export revenue (≈ €604 M)</div></div>
     </div>
     <div class="verdict-line" id="rVerdict"></div>
-    <p class="small mute" style="margin:12px 0 0">Daily revenue = €863 M ÷ 365 ≈ €2.36 M. Single-event comparison, not an expected value: it ignores the probability of the incident and the cost of recovery and fines, which would raise the loss.</p>
+    <p class="small mute" style="margin:12px 0 0">Daily revenue = €863 M ÷ 365 ≈ €2.36 M. Export revenue ≈ 70% of €863 M (the source says “more than 70%”, so this is conservative). Ignores recovery costs, ransom and fines, which would raise the loss, and benefits that are not in cash terms.</p>
   </div>
 </section>
 
-<!-- 6 -->
+<!-- 5c · basis -->
+<section id="basis">
+  <p class="eyebrow">Why these numbers</p>
+  <h2>Every estimate is built from stated drivers, so it can be challenged and replaced with quotes</h2>
+  <p>Porcelanosa publishes no internal costs, so the set-up cost is a <b>bottom-up estimate</b>: effort × rate. The drivers are our assumptions, chosen to be realistic for a ~5,000-person group with plant (OT) networks and reconciled with the range in our briefing. Treat them as order-of-magnitude (about ±30%). Public ISO 27001 cost guides quote tens of thousands of dollars, but for small software firms; they do not scale to a multi-site manufacturer, which is why we did not use them.</p>
+  <div class="tblwrap"><table id="basisTable"><thead><tr><th>Cost driver</th><th>Assumption</th><th class="num">Low (€ M)</th><th class="num">High (€ M)</th></tr></thead><tbody></tbody></table></div>
+  <div class="cards">
+    <div class="card"><div class="k">Rates used</div><p class="small" style="margin:0">Consultant ≈ €1,000 per day; internal FTE ≈ €75 k loaded per year; staff time ≈ €25 per hour. These are our assumptions for the Spanish market, not quotes.</p></div>
+    <div class="card"><div class="k">Audit saving ≈ €50 k a year</div><p class="small" style="margin:0">Assumption: today’s audit and surveillance fees for 9001, 14001 and 50001 across the brands ≈ €250 k a year. IAF MD 11 caps the audit-time reduction for integrated audits at 20% (2019 text). 20% × €250 k = €50 k.</p></div>
+    <div class="card"><div class="k">Calculator inputs</div><p class="small" style="margin:0">Downtime days come from a sector average. Output halted (50%), margin (35%), probability (5%) and reduction (30%) are assumptions, shown next to each slider so a reader can change them.</p></div>
+  </div>
+  <div class="warn"><b>Phase 0 fix:</b> the first task of phase 1 is to replace these assumptions with three quotes per line and the group’s real audit invoices. If the real total exceeds the high case, the plan stops at gate 1.</div>
+</section>
+
+<!-- 7 · reco -->
+<section id="reco">
+  <p class="eyebrow">Recommendation and plan</p>
+  <h2>ADOPT in three gated phases: integrate now, secure next, pilot AI without certifying</h2>
+  <div class="phases" id="phases"></div>
+  <div class="cards">
+    <div class="card"><div class="k">Conditions</div><ul id="conds"></ul></div>
+    <div class="card"><div class="k">3 indicators to monitor</div><ul id="kpis"></ul></div>
+    <div class="card"><div class="k">Trade-offs we accept</div><ul id="trade"></ul></div>
+  </div>
+  <h3 style="margin-top:28px">First 90 days</h3>
+  <div class="tblwrap"><table id="plan90"><thead><tr><th>When</th><th>Action</th><th>Owner (role)</th></tr></thead><tbody></tbody></table></div>
+  <h3 style="margin-top:28px">What would make us change our mind</h3>
+  <div class="cards" id="change"></div>
+</section>
+
+<!-- 6 · barriers -->
 <section id="barriers">
   <p class="eyebrow">Barriers and risks</p>
   <h2>The hard part is organisational: seven autonomous brands, a family firm, shift workers</h2>
@@ -228,21 +265,24 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:26px 0 50px;font
   <div class="cards" id="regCards"></div>
 </section>
 
-<!-- 7 -->
-<section id="reco">
-  <p class="eyebrow">Recommendation</p>
-  <h2>ADOPT, in three phases: integrate now, secure next, pilot AI without certifying</h2>
-  <div class="phases" id="phases"></div>
-  <div class="cards">
-    <div class="card"><div class="k">Conditions</div><ul id="conds"></ul></div>
-    <div class="card"><div class="k">3 indicators to monitor</div><ul id="kpis"></ul></div>
-    <div class="card"><div class="k">Trade-offs we accept</div><ul id="trade"></ul></div>
-  </div>
-  <h3 style="margin-top:28px">What would make us change our mind</h3>
-  <div class="cards" id="change"></div>
+<!-- background -->
+<section id="structure">
+  <p class="eyebrow">Background · how an integrated system works</p>
+  <h2>Six clause rows are identical across standards; only clause 8 differs, so they can be merged</h2>
+  <p>Management-system standards share the same skeleton (the “harmonized structure”, clauses 4 to 10). Grey rows span every standard: one policy, one risk register, one internal audit, one management review. The coloured cells in clause 8 are the specific operational requirements that stay separate.</p>
+  <div class="gridwrap"><div class="iso-grid" id="isoGrid"></div></div>
+  <div class="legend"><span><i style="background:var(--common)"></i>Shared once (harmonized structure)</span><span><i style="background:var(--c9001)"></i>Standard-specific</span></div>
+  <p class="small mute" style="margin-top:10px">ISO 50001 (energy), which Porcelanosa already declares, plugs into the same structure and is included in the integration.</p>
 </section>
 
-<!-- 8 -->
+<section id="norms">
+  <p class="eyebrow">The standards in 2026</p>
+  <h2>Four standards, four different jobs and four different maturity levels</h2>
+  <div class="cards" id="normCards"></div>
+  <div class="warn"><b>Capability vs. hype.</b> A certificate proves that a management system exists and is audited; it does not prove that a product, plant or AI model is good. In particular, <b>ISO 42001 certification is not compliance with the EU AI Act</b>: the standard is a management framework, the law sets legal obligations. It helps to organise the evidence, nothing more.</div>
+</section>
+
+<!-- 8 · quiz -->
 <section id="quiz">
   <p class="eyebrow">Check your understanding</p>
   <h2>Quiz: 8 questions</h2>
@@ -251,7 +291,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:26px 0 50px;font
   <button class="btn" id="restart" hidden>Restart quiz</button>
 </section>
 
-<!-- 9 -->
+<!-- 9 · sources -->
 <section id="sources">
   <p class="eyebrow">Sources and evidence quality</p>
   <h2>Sources, with weak evidence flagged</h2>
@@ -299,21 +339,33 @@ const COMPANY_CARDS = [
   {k:'External pressure', body:'US revenue fell by more than 10%, so cost matters. Export customers, EU rules on AI and data, and sustainability reporting all increase what the group must be able to prove.'}
 ];
 const VALUE_ROWS = [
-  ['Audits and certification','One audit programme for 9001, 14001 and 50001 instead of one per standard and per brand','About €50 k a year saved in audit fees; more time for real improvement'],
-  ['Production and energy','Quality, environment and energy indicators reviewed together for the kilns and plants','Fewer conflicting targets; energy savings tracked with quality scrap'],
-  ['Information security','ISO 27001 controls on plant IT/OT, central IT and e-commerce','Lower probability and duration of a stoppage; a verifiable answer to customer questionnaires'],
-  ['AI configurator','ISO 42001 pilot: owner, data checks, labelling of AI-generated images, incident log','Fewer legal and reputational surprises; faster AI Act readiness'],
-  ['Export customers','One certificate pack and one security answer for all brands','Shorter tender and due-diligence cycles; protects the 70%+ export revenue'],
-  ['Sustainability data','Emission and energy data produced under audited processes','More reliable figures for reporting and for customers']
+  ['Audits and certification','One audit programme for 9001, 14001 and 50001 instead of one per standard and per brand','≈ €50 k a year saved. Basis: assumed €250 k a year of fees × 20% maximum integrated-audit reduction (IAF MD 11).'],
+  ['Production and energy','Quality, environment and energy indicators reviewed together for the kilns and plants','Fewer conflicting targets; energy savings tracked next to scrap. Qualitative: not quantified, since there are no plant data.'],
+  ['Information security','ISO 27001 controls on plant IT/OT, central IT and e-commerce','Lower probability and duration of a stoppage. Basis: manufacturing is the most targeted sector for ransomware; average downtime 11.6 days (see 5b).'],
+  ['AI configurator','ISO 42001 pilot: owner, data checks, labelling of AI-generated images, incident log','Fewer legal and reputational surprises. Basis: AI Act transparency duties apply to AI-generated content.'],
+  ['Export customers','One certificate pack and one security answer for all brands','Protects the 70%+ export revenue. Break-even only needs ≈ 1.2% of export sales protected (see 5b). Customer demand still to be evidenced in the first 30 days.'],
+  ['Sustainability data','Emission and energy data produced under audited processes','More reliable figures for reporting and for customers. Qualitative.']
 ];
-const COSTS = [
-  ['Integrate 9001 + 14001 + 50001 into one group system',0.6,0.9],
-  ['ISO 27001 preparation (risk assessment, controls, tooling, testing)',0.8,1.4],
-  ['ISO 42001 pilot (no certification)',0.15,0.3],
-  ['Audit and certification fees, internal auditors',0.2,0.3],
-  ['Training and change management (incl. shift workers)',0.15,0.2]
+/* cost drivers: [line, phase, driver, assumption, low €M, high €M] */
+const LINES = ['Integrate 9001 + 14001 + 50001 into one group system','ISO 27001 preparation and controls','ISO 42001 pilot (no certification)','Audit and certification fees','Training and change management'];
+const DRIVERS = [
+  [0,1,'External consultants','200–300 days × ≈ €1,000 a day',0.20,0.30],
+  [0,1,'Core internal team','3–4 FTE for 12 months × ≈ €75 k loaded',0.225,0.30],
+  [0,1,'Group QMS/EHS/energy software and roll-out to the 7 brands','Licences, configuration, migration',0.10,0.20],
+  [0,1,'Document migration and process-owner time','Harmonising brand procedures',0.075,0.10],
+  [1,2,'ISMS design and risk assessment','150–250 consultant days × ≈ €1,000 a day',0.15,0.25],
+  [1,2,'Security tooling and 24/7 monitoring service','12 months for central IT, e-commerce and plants',0.35,0.60],
+  [1,2,'OT network segmentation and penetration tests','Castellón plants first',0.20,0.40],
+  [1,2,'Internal security staff','1–2 FTE, part-year × ≈ €75 k loaded',0.10,0.15],
+  [2,3,'AI consultants','70–130 days × ≈ €1,000 a day',0.07,0.13],
+  [2,3,'Configurator and AI-tool changes','AI inventory, logging, labelling of AI-generated images',0.05,0.10],
+  [2,3,'Internal AI-governance time','Owner, impact assessments',0.03,0.07],
+  [3,1,'Integrated transition audits (2026 editions)','9001, 14001 and 50001 in one audit programme',0.07,0.10],
+  [3,2,'ISO 27001 stage 1 and 2 audits','Multi-site scope',0.08,0.12],
+  [3,2,'Internal-auditor courses','Training of group auditors',0.05,0.08],
+  [4,1,'Awareness training','4,000–5,000 staff × 1–1.2 h × ≈ €25 an hour',0.10,0.15],
+  [4,1,'E-learning platform and communication material','Content in several languages and for shift workers',0.05,0.05]
 ];
-const COST_MAX = 1.5;
 const BARRIERS = [
   {k:'Management', body:'Seven brands are used to autonomy and a family owner decides quickly but also protects tradition. Without a group-level owner the system stays a paperwork layer.'},
   {k:'Organisation', body:'Shift workers in the plants have little time for training; 200+ stores are far from the quality department; brands may resist a common process language.'},
@@ -324,18 +376,25 @@ const REG = [
   {k:'GDPR', body:'Customer data in stores and the photos or plans customers upload to the configurator are personal data. 27001 and 42001 both help to evidence control.'},
   {k:'Sustainability reporting', body:'Emission and energy figures from 14001 and 50001 must be reliable; 27001 protects the integrity of the data behind them. Scope of EU reporting rules is still changing.'}
 ];
-const PHASES = [
-  {when:'Phase 1 · now to 12 months', t:'One system: 9001 + 14001 + 50001', b:'Build one group-wide management system with one policy, risk register and audit programme during the transition to the 2026 editions.', pilot:false},
-  {when:'Phase 2 · within 24 months', t:'Add ISO 27001', b:'Start with central IT, e-commerce and the Castellón plants, then extend to brands and stores.', pilot:false},
-  {when:'Phase 3 · pilot, no certificate', t:'ISO 42001 as a framework', b:'Apply the controls to the AI configurator and process AI tools; review after 12 months whether certification adds value.', pilot:true}
+const PHASE_INFO = [
+  {when:'Phase 1 · approve now · months 0–12', t:'One system: 9001 + 14001 + 50001', b:'One group-wide system with one policy, risk register and audit programme, during the transition to the 2026 editions.', gate:'Gate 1 (month 12): one integrated audit passed without major findings; at least 5 of 7 brands in scope; customer demand for security evidence documented; the 27001 quote is within the high case.', pilot:false},
+  {when:'Phase 2 · released at gate 1 · months 12–24', t:'Add ISO 27001', b:'Start with central IT, e-commerce and the Castellón plants, then extend to brands and stores.', gate:'Gate 2 (month 24): 27001 certificate for the first scope; incidents and customer questionnaires tracked.', pilot:false},
+  {when:'Phase 3 · pilot, no certificate', t:'ISO 42001 as a framework', b:'Apply the controls to the AI configurator and process AI tools. No certification until the market matures.', gate:'Review after 12 months: does certification add value for customers or regulators?', pilot:true}
 ];
-const CONDS = ['A group-level owner appointed by top management before phase 1 starts','Brand directors agree on a common scope and risk register','Phase 2 quote stays within the €0.8–1.4 M band'];
+const CONDS = ['A group-level owner appointed by top management before phase 1 starts','Brand directors agree on a common scope and risk register','Real quotes replace our assumptions within the first 60 days'];
 const KPIS = ['Customer security/ISO questionnaires answered without exceptions (%)','Audit findings per brand and days of audit effort (trend)','AI systems inventoried and risk-assessed (% of total)'];
-const TRADE = ['Slower local autonomy for each brand in exchange for group-level control','Spend now with uncertain, hard-to-measure return','No ISO 42001 badge for marketing in the short term'];
+const TRADE = ['Slower local autonomy for each brand in exchange for group-level control','Spend now with a return that is mostly avoided loss and kept customers, hard to measure','No ISO 42001 badge for marketing in the short term'];
+const PLAN90 = [
+  ['Days 0–30','Appoint the group owner and sponsor; set up the steering group with the 7 brand directors','CEO / COO'],
+  ['Days 0–30','Collect security and certification requirements from the top export customers (questionnaires, tender conditions). If there are none, stop here.','Sales director'],
+  ['Days 0–30','Inventory current certificates, audit bodies and audit invoices per brand','Quality director'],
+  ['Days 31–60','Agree one scope, one policy and one risk register; request three quotes per cost line','Quality + IT directors'],
+  ['Days 61–90','Agree an integrated audit plan with the certification body; first inventory of AI tools; gate-0 review of costs against the high case','Group owner + CFO']
+];
 const CHANGE = [
-  {k:'Becomes WAIT', body:'US and export sales fall much further, so €2–3 M becomes unaffordable and phase 2 should be postponed.'},
-  {k:'Becomes WAIT', body:'The quote for ISO 27001 comes in above about €4 M, or it turns out that a group-wide 27001 already exists.'},
-  {k:'Becomes REJECT', body:'Key customers never ask for certificates or security evidence, so the export-protection argument disappears.'}
+  {k:'Becomes WAIT', body:'US and export sales fall much further, so about €1 M for phase 1 becomes unaffordable and phase 2 is postponed.'},
+  {k:'Becomes WAIT', body:'Quotes for ISO 27001 come in above about €4 M in total, or a group-wide 27001 already exists.'},
+  {k:'Becomes REJECT', body:'Key customers never ask for certificates or security evidence: the export-protection argument disappears and the insurance argument alone does not repay the cost (see 5b).'}
 ];
 const SOURCES = [
   ['Bolsamania: Porcelanosa reaches more than €863 M in revenue in 2025 and exceeds €100 M EBITDA','https://www.bolsamania.com/noticias/empresas/economia--porcelanosa-alcanza-una-facturacion-de-mas-de-863-millones-en-2025-y-supera-los-100-millones-de-ebitda--23192051.html',''],
@@ -345,28 +404,42 @@ const SOURCES = [
   ['Revista Poble: Porcelanosa 2025 strategy (AI, sustainability, international expansion)','https://revistapoble.net/?p=155344',''],
   ['Valencia Plaza: Innovation and technology unveil Porcelanosa novelties at its international showcase','https://valenciaplaza.com/valenciaplaza/lainnovacionylatecnologiadesvelanlasnovedadesdeporcelanosaensumuestrainternacional',''],
   ['Forbes España: Porcelanosa and US revenue decline','https://forbes.es/?p=994963',''],
+  ['Comparitech: ransomware attacks on manufacturers cost $46 bn in downtime (average 11.6 days)','https://comparitech.com/blog/information-security/ransomware-manufacturing-companies','all manufacturers, attacks 2018–Oct 2024'],
+  ['Infosecurity Magazine: manufacturing accounts for 22% of all ransomware victims','https://infosecurity-magazine.com/news/manufacturing-22-ransomware-victims','vendor data'],
+  ['Manufacturing Dive: manufacturing saw the most cyberattacks in 2025 (IBM X-Force)','https://www.manufacturingdive.com/news/manufacturing-sector-saw-most-cyberattacks-in-2025-ibm-x-force/813063/','all attack types'],
+  ['IAF MD 11: audits of integrated management systems (time-reduction rules)','https://sac-accreditation.gov.sg/files/Documents/Management%20system%20and%20products%20certification/IAF-MD11-Issue-2-17012019.pdf','2019 issue; check the current version'],
   ['ISO: ISO/IEC 42001:2023 AI management systems','https://www.iso.org/standard/81230.html',''],
   ['ISO: ISO 9001 quality management systems','https://www.iso.org/standard/62085.html','2026 edition timing'],
   ['ISO: ISO 14001 environmental management systems','https://www.iso.org/standard/60857.html','2026 edition timing'],
   ['ISO: ISO 50001 energy management systems','https://www.iso.org/standard/69426.html',''],
   ['ISO: ISO/IEC 27001 information security management','https://www.iso.org/standard/27001','']
 ];
-const WEAK = ['<b>Weak or contested evidence:</b> (1) exact timing of the ISO 9001 and 14001 2026 editions and transition periods; (2) that no group-wide ISO 27001 exists (absence of public evidence, not proof); (3) that brands run separate systems (assumption). Cost bands and process effects are team estimates.'];
+const WEAK = '<b>Weak or contested evidence:</b> (1) exact timing of the ISO 9001 and 14001 2026 editions; (2) that no group-wide ISO 27001 exists (absence of public evidence, not proof); (3) that brands run separate systems (assumption); (4) the 11.6-day downtime is a sector average, not Porcelanosa data; (5) all cost drivers, rates, the €250 k audit baseline and the calculator assumptions (output halted, margin, probability, reduction) are our own estimates, listed in “Why these numbers”.';
 const QUIZ = [
   {q:'What do ISO 9001, 14001, 27001 and 42001 have in common that makes integration possible?', o:['The same auditors','A harmonized structure (clauses 4–10)','The same certification body','The same list of controls'], a:1, e:'All management-system standards follow the same high-level structure, so policy, planning, audit and review can be run once.'},
   {q:'Which elements can be unified in an integrated management system?', o:['Policy, risk register, internal audit, management review','Production procedures of every plant','The specific controls of each standard','Customer contracts'], a:0, e:'The shared clauses can be unified; the specific operational requirements of each standard remain.'},
   {q:'Where do the standard-specific requirements mostly sit?', o:['Clause 4 Context','Clause 5 Leadership','Clause 8 Operation','Clause 10 Improvement'], a:2, e:'Clause 8 holds the operational requirements: product, environmental, security or AI-specific.'},
   {q:'A company gets ISO 42001 certified. Is it therefore compliant with the EU AI Act?', o:['Yes, fully','Yes, for high-risk systems only','No: it supports compliance but does not replace legal obligations','Only if audited twice'], a:2, e:'ISO 42001 is a management framework; the AI Act sets legal duties such as labelling AI-generated content.'},
-  {q:'In the Porcelanosa case, what mainly justifies the investment?', o:['Large audit-fee savings','Protecting continuity and export customer trust','Lower energy bills','A marketing badge'], a:1, e:'Audit savings are only about €50 k a year against €1.9–3.1 M of year-1 cost; the value is risk reduction and customer trust.'},
+  {q:'What mainly justifies the investment in the Porcelanosa case?', o:['Large audit-fee savings','Keeping export customers and avoiding a costly stoppage','Lower energy bills','A marketing badge'], a:1, e:'Audit savings are only about €50 k a year; the expected value of avoided stoppages is also small. The case rests on customer access and protection against a rare but costly event.'},
   {q:'Which statements are hypotheses, not public facts?', o:['2025 revenue above €863 M','That each brand runs its own systems and that no group-wide 27001 exists','That Porcelanosa declares ISO 9001, 14001 and 50001','That it has an AI configurator'], a:1, e:'Internal set-up is not public; we state it as an assumption and test whether the recommendation survives if it is wrong.'},
   {q:'Why pilot ISO 42001 without certification?', o:['It is forbidden to certify','The certification market is young; learn first and decide later','AI is not used by Porcelanosa','It costs nothing'], a:1, e:'The benefit of the framework is governance now; the value of a certificate is still unclear.'},
-  {q:'In the break-even calculator, which three variables drive the loss avoided?', o:['Days avoided × share of output halted × margin','Employees × salary × days','Brands × stores × countries','Audit days × fee × years'], a:0, e:'Avoided loss = daily revenue × days × share of output halted × contribution margin.'}
+  {q:'With a €2.5 M set-up cost and a 35% contribution margin, roughly what share of export sales must certificates protect to repay the cost?', o:['About 0.1%','About 1.2%','About 12%','About 35%'], a:1, e:'€2.5 M ÷ 35% ≈ €7.1 M of sales, against about €604 M of export revenue (70% of €863 M): ≈ 1.2%.'}
 ];
 
 /* ============ RENDER ============ */
 const $ = s => document.querySelector(s);
 const el = (tag, cls, html) => { const e = document.createElement(tag); if(cls) e.className = cls; if(html!==undefined) e.innerHTML = html; return e; };
-const cardList = (target, items, withTop) => items.forEach(c => target.append(el('div','card', `<div class="k">${c.k}</div><div>${c.body}</div>`)));
+const cardList = (target, items) => items.forEach(c => target.append(el('div','card', `<div class="k">${c.k}</div><div>${c.body}</div>`)));
+const r3 = x => Math.round(x*1000)/1000;
+const rng = (lo,hi) => `€${r3(lo)}–${r3(hi)} M`;
+const sum = (arr, i) => r3(arr.reduce((a,d)=>a+d[i],0));
+
+// derived cost totals (all figures come from DRIVERS, so they always reconcile)
+const TOT = [sum(DRIVERS,4), sum(DRIVERS,5)];
+const PH = [1,2,3].map(p => { const d = DRIVERS.filter(x=>x[1]===p); return [sum(d,4), sum(d,5)]; });
+const LN = LINES.map((_,i) => { const d = DRIVERS.filter(x=>x[0]===i); return [sum(d,4), sum(d,5)]; });
+$('#askP1').textContent = rng(...PH[0]); $('#askP2').textContent = rng(...PH[1]); $('#askP3').textContent = rng(...PH[2]); $('#askTot').textContent = rng(...TOT);
+$('#totRange').textContent = rng(...TOT); $('#totBig').textContent = rng(...TOT);
 
 // structure grid
 (function(){
@@ -383,30 +456,48 @@ STANDARDS.forEach(s => { const c = el('div','card norm', `<div class="k">${s.top
 STATS.forEach(([n,l]) => $('#stats').append(el('div','stat', `<div class="n">${n}</div><div class="l">${l}</div>`)));
 cardList($('#companyCards'), COMPANY_CARDS);
 VALUE_ROWS.forEach(r => $('#valueTable tbody').append(el('tr','', r.map(x=>`<td>${x}</td>`).join(''))));
-COSTS.forEach(([n,lo,hi]) => $('#costBars').append(el('div','bar', `<div class="row"><span>${n}</span><b>€${lo}–${hi} M</b></div><div class="track"><div class="fill" style="left:${lo/COST_MAX*100}%;width:${(hi-lo)/COST_MAX*100}%"></div></div><div class="axis"><span>€0</span><span>€${COST_MAX} M</span></div>`)));
+const COST_MAX = 1.5;
+LINES.forEach((n,i) => { const [lo,hi] = LN[i]; $('#costBars').append(el('div','bar', `<div class="row"><span>${n}</span><b>${rng(lo,hi)}</b></div><div class="track"><div class="fill" style="left:${lo/COST_MAX*100}%;width:${(hi-lo)/COST_MAX*100}%"></div></div><div class="axis"><span>€0</span><span>€${COST_MAX} M</span></div>`)); });
+// basis table
+LINES.forEach((n,i) => {
+  DRIVERS.filter(d=>d[0]===i).forEach(d => $('#basisTable tbody').append(el('tr','', `<td>${d[2]}</td><td>${d[3]}</td><td class="num">${d[4].toFixed(3).replace(/0$/,'')}</td><td class="num">${d[5].toFixed(3).replace(/0$/,'')}</td>`)));
+  $('#basisTable tbody').append(el('tr','sub', `<td colspan="2">Subtotal: ${n}</td><td class="num">${LN[i][0]}</td><td class="num">${LN[i][1]}</td>`));
+});
+$('#basisTable tbody').append(el('tr','sub', `<td colspan="2">Total set-up</td><td class="num">${TOT[0]}</td><td class="num">${TOT[1]}</td>`));
 cardList($('#barrierCards'), BARRIERS);
 cardList($('#regCards'), REG);
-PHASES.forEach(p => $('#phases').append(el('div','phase'+(p.pilot?' pilot':''), `<div class="when">${p.when}</div><h3>${p.t}</h3><p class="small" style="margin:0">${p.b}</p>`)));
+PHASE_INFO.forEach((p,i) => $('#phases').append(el('div','phase'+(p.pilot?' pilot':''), `<div class="when">${p.when}</div><h3>${p.t}</h3><div class="budget">${rng(...PH[i])}</div><p class="small" style="margin:0">${p.b}</p><div class="gate"><b>Gate</b>${p.gate}</div>`)));
 [['#conds',CONDS],['#kpis',KPIS],['#trade',TRADE]].forEach(([s,a]) => a.forEach(t => $(s).append(el('li','',t))));
+PLAN90.forEach(r => $('#plan90 tbody').append(el('tr','', r.map(x=>`<td>${x}</td>`).join(''))));
 cardList($('#change'), CHANGE);
 SOURCES.forEach(([t,u,f]) => $('#srcList').append(el('li','', `<a href="${u}" target="_blank" rel="noopener">${t}</a>${f?`<span class="flag">check: ${f}</span>`:''}`)));
-$('#weak').innerHTML = WEAK[0];
+$('#weak').innerHTML = WEAK;
 
 /* ============ CALCULATOR ============ */
-const DAILY = 863/365;
+const DAILY = 863/365, EXPORT = 863*0.70;
+const mid = r3((TOT[0]+TOT[1])/2);
+[['Low · '+TOT[0],TOT[0]],['Mid · '+mid,mid],['High · '+TOT[1],TOT[1]]].forEach(([l,v],i) => { const o = el('option','', `${l.split(' · ')[0]} · €${l.split(' · ')[1]} M`); o.value = v; if(i===1) o.selected = true; $('#scen').append(o); });
+const fm = x => x >= 1 ? '€'+x.toFixed(2)+' M' : '€'+Math.round(x*1000)+' k';
 function calc(){
-  const d = +$('#days').value, s = +$('#share').value, m = +$('#margin').value, cost = +$('#scen').value;
-  $('#vDays').textContent = d + (d===1?' day':' days'); $('#vShare').textContent = s+'%'; $('#vMargin').textContent = m+'%';
-  const rev = DAILY*d*s/100, loss = rev*m/100, cover = loss/cost*100, be = cost/(DAILY*s/100*m/100);
-  $('#rRev').textContent = '€'+rev.toFixed(1)+' M';
-  $('#rLoss').textContent = '€'+loss.toFixed(2)+' M';
-  $('#rCover').textContent = Math.round(cover)+'%';
-  $('#rBE').textContent = be.toFixed(1)+' days';
+  const d = +$('#days').value, s = +$('#share').value, m = +$('#margin').value, p = +$('#prob').value, r = +$('#red').value, y = +$('#yrs').value, cost = +$('#scen').value;
+  $('#vDays').textContent = d + (d===1?' day':' days'); $('#vShare').textContent = s+'%'; $('#vMargin').textContent = m+'%'; $('#vProb').textContent = p+'%'; $('#vRed').textContent = r+'%'; $('#vYrs').textContent = y+(y===1?' year':' years');
+  const loss = DAILY*d*(s/100)*(m/100);
+  const ev = loss*(p/100)*(r/100), evT = ev*y, cover = evT/cost*100;
+  const protect = cost/(m/100), pct = protect/EXPORT*100;
+  $('#rLoss').textContent = fm(loss);
+  $('#rOnce').textContent = Math.round(loss/cost*100)+'%';
+  $('#rEV').textContent = fm(ev);
+  $('#rEVc').textContent = Math.round(cover)+'%';
+  $('#rEVl').textContent = `Set-up cost covered by expected benefit over ${y} ${y===1?'year':'years'}`;
+  $('#rProt').textContent = fm(protect);
+  $('#rPct').textContent = pct.toFixed(1)+'%';
   const v = $('#rVerdict');
-  if (cover >= 100){ v.className='verdict-line pos'; v.textContent = `One such event avoided repays year 1 (${(cover/100).toFixed(1)}× the cost).`; }
-  else { v.className='verdict-line neg'; v.textContent = `One such event avoided repays only ${Math.round(cover)}% of year 1: it needs about ${be.toFixed(1)} stoppage days to break even.`; }
+  v.className = 'verdict-line ' + (cover>=100 ? 'pos' : 'neg');
+  v.textContent = cover>=100
+    ? `On these assumptions the insurance effect alone repays the set-up cost within ${y} years.`
+    : `Insurance alone repays only ${Math.round(cover)}% of the cost over ${y} years. The rest has to come from customer access: protecting ${fm(protect)} of export sales (${pct.toFixed(1)}% of export revenue) repays the full cost.`;
 }
-['days','share','margin','scen'].forEach(i => $('#'+i).addEventListener('input', calc)); calc();
+['days','share','margin','prob','red','yrs','scen'].forEach(i => $('#'+i).addEventListener('input', calc)); calc();
 
 /* ============ QUIZ ============ */
 let score = 0, answered = 0;
