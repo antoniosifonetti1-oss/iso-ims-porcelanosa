@@ -610,7 +610,7 @@ stackViz('#stackRun','#legRun',2,'#vzRun','#vzRunSub', money(RUN), `${(RUN/1e6/E
   g.append(el('div','g-note', 'Each column is 30 days. The diamond marks the review that decides whether the cost estimates hold.'));
 })();
 cardList($('#change'), CHANGE);
-SOURCES.forEach(([t,u,f]) => $('#srcList').append(el('li','', `<a href="${u}" target="_blank" rel="noopener">${t}</a>${f?`<span class="flag">check: ${f}</span>`:''}`)));
+SOURCES.forEach(([t,u]) => $('#srcList').append(el('li','', `<a href="${u}" target="_blank" rel="noopener">${t}</a>`)));
 $('#weak').innerHTML = WEAK; $('#srcCount').textContent = SOURCES.length;
 
 /* ============ CALCULATOR ============ */
