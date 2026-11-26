@@ -14,116 +14,165 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#ffffff; --bg2:#f5f5f3; --ink:#1a1a1a; --mute:#5c5c5c; --line:#dcdcd8;
-  --yellow:#f5c518; --yellow-bg:#fff6d1; --yellow-ink:#4a3a00;
-  --c9001:#2b6cb0; --c14001:#2f855a; --c50001:#b7791f; --c27001:#6b46c1; --c42001:#c53030;
-  --common:#ececea; --ok:#2f855a; --bad:#c53030;
-}
-@media (prefers-color-scheme:dark){
-  :root{
-    --bg:#141414; --bg2:#1d1d1c; --ink:#ededeb; --mute:#a3a3a0; --line:#34342f;
-    --yellow-bg:#3a3110; --yellow-ink:#f7e6a1;
-    --c9001:#63a4e8; --c14001:#5cc08a; --c50001:#e0a84a; --c27001:#a98be8; --c42001:#ee7b7b;
-    --common:#262625; --ok:#5cc08a; --bad:#ee7b7b;
-  }
+  --bg:#eef3f5; --surface:#fff; --border:#e4eef2; --text:#232733; --muted:#78808a;
+  --primary:#17475f; --primary-h:#123a4d; --accent:#0b6e7f; --accent-bg:#e0f7fa; --primary-bg:#eaf4fa;
+  --amber:#e3a94b; --amber-bg:#fdf3e1; --amber-ink:#5c4310;
+  --radius:18px; --radius-sm:12px; --shadow:0 4px 14px #1e323c14; --shadow-md:0 14px 34px #1e323c1f;
+  --c9001:#17475f; --c14001:#2f8ca0; --c27001:#6a5fa8; --c42001:#c4593f;
+  --common:#e4eef2; --ok:#0b6e7f; --bad:#c4593f;
 }
 *{box-sizing:border-box}
-body{margin:0;font-family:Manrope,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:17px}
+html{background:#ced9dd}
+body{margin:0;min-height:100vh;font-family:Manrope,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.6;font-size:16px;
+  background:
+   radial-gradient(1100px 760px at 12% -12%, rgba(11,110,127,.52), transparent 60%) fixed,
+   radial-gradient(1000px 820px at 102% 18%, rgba(47,140,160,.42), transparent 58%) fixed,
+   radial-gradient(1200px 900px at 50% 118%, rgba(23,71,95,.48), transparent 58%) fixed,
+   radial-gradient(800px 700px at 88% 92%, rgba(18,58,77,.32), transparent 60%) fixed,
+   linear-gradient(#dfeaee 0%, #ced9dd 55%) fixed;}
 a{color:inherit}
-.wrap{max-width:980px;margin:0 auto;padding:0 22px}
-nav{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;gap:4px;overflow-x:auto;white-space:nowrap;height:54px}
-nav b{margin-right:12px;font-weight:800;letter-spacing:.02em}
-nav a{text-decoration:none;font-size:14px;font-weight:600;color:var(--mute);padding:7px 12px;border-radius:6px}
-nav a:hover{background:var(--bg2);color:var(--ink)}
-nav a.on{background:var(--ink);color:var(--bg)}
-.panel{display:none;padding:40px 0 10px}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px}
+
+/* header */
+.app-header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.app-header .bar{display:flex;align-items:center;gap:18px;min-height:64px}
+.brand{display:flex;align-items:center;gap:.55rem;text-decoration:none;flex-shrink:0}
+.brand-name{font-size:1.4rem;font-weight:800;letter-spacing:-.01em;color:var(--primary)}
+.logo-mark{flex-shrink:0;display:inline-grid;grid-template-columns:repeat(2,1fr);gap:3px;width:1.6rem;height:1.6rem}
+.logo-mark span{background:var(--primary);border-radius:3px}
+nav{display:flex;gap:4px;overflow-x:auto;white-space:nowrap;padding:8px 0;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{text-decoration:none;font-size:.85rem;font-weight:700;color:var(--muted);padding:.5rem .95rem;border-radius:999px;transition:background .15s,color .15s}
+nav a:hover{background:var(--primary-bg);color:var(--primary)}
+nav a.on{background:var(--primary);color:#fff}
+
+/* hero */
+.hero-blue{position:relative;overflow:hidden;margin:26px 0 22px;padding:3.2rem 2rem;border-radius:var(--radius);box-shadow:var(--shadow-md);text-align:center;color:#fff;
+  background:linear-gradient(135deg,var(--primary) 0%,var(--accent) 100%)}
+.hero-blue:before,.hero-blue:after{content:"";pointer-events:none;position:absolute;background:#ffffff24;border-radius:50%}
+.hero-blue:before{width:360px;height:360px;top:-160px;right:-100px}
+.hero-blue:after{width:300px;height:300px;bottom:-170px;left:-90px;background:#ffffff1a}
+.hero-blue>*{position:relative}
+.hero-mark{width:2.4rem;height:2.4rem;margin:0 auto 1rem}
+.hero-mark span{background:#ffffffd9}
+.hero-eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.85;margin:0 0 .6rem}
+.hero-blue h1{font-size:clamp(1.7rem,4.2vw,2.5rem);line-height:1.15;letter-spacing:-.02em;margin:0 0 .8rem;font-weight:800;color:#fff}
+.hero-sub{font-size:1.15rem;font-weight:700;margin:0 0 .3rem}
+.hero-desc{font-size:.95rem;opacity:.85;margin:0}
+
+/* sheets: white content cards */
+.panel{display:none;padding:0 0 10px}
 .panel.on{display:block}
-.eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin:0 0 8px}
-h1{font-size:clamp(28px,4.6vw,42px);line-height:1.15;letter-spacing:-.02em;margin:0 0 14px;font-weight:800}
-h2{font-size:clamp(22px,3vw,28px);line-height:1.22;letter-spacing:-.015em;margin:0 0 12px;font-weight:800}
-h3{font-size:18px;margin:30px 0 8px;font-weight:700}
-p{margin:0 0 14px}
-.lead{font-size:19px}
-.mute{color:var(--mute)}
-.small{font-size:14px}
-.verdict{background:var(--yellow-bg);color:var(--yellow-ink);border-left:6px solid var(--yellow);padding:18px 22px;border-radius:4px;margin:22px 0}
-.verdict b.tag{display:inline-block;background:var(--yellow);color:#1a1a1a;padding:2px 10px;border-radius:3px;font-size:13px;letter-spacing:.08em;margin-bottom:6px}
-.verdict ul{margin:8px 0 0;padding-left:20px}
-.verdict li{margin-bottom:6px}
-.warn{background:var(--yellow-bg);color:var(--yellow-ink);border:1px dashed var(--yellow);padding:14px 18px;border-radius:4px;margin:18px 0;font-size:15.5px}
+.panel.on:not(#p-summary), .sheet{background:rgba(255,255,255,.96);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:34px 32px 26px;margin:26px 0}
+@media(max-width:640px){.panel.on:not(#p-summary), .sheet{padding:24px 18px 20px}}
+.eyebrow{font-size:.75rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 .5rem}
+h2{position:relative;padding-left:1rem;font-size:clamp(1.35rem,2.8vw,1.9rem);line-height:1.22;letter-spacing:-.01em;margin:0 0 1rem;font-weight:800;color:var(--primary)}
+h2:before{content:"";position:absolute;left:0;top:.12em;bottom:.12em;width:6px;border-radius:999px;background:linear-gradient(180deg,var(--primary),var(--accent))}
+h3{font-size:1.2rem;margin:2rem 0 .6rem;font-weight:800;color:var(--primary);display:flex;align-items:center;gap:.6rem}
+.card h3,.phase h3{font-size:1.05rem;margin:0;display:block}
+p{margin:0 0 .9rem}
+.lead{font-size:1.15rem}
+.mute{color:var(--muted)}
+.small{font-size:.875rem}
+.count{display:inline-block;color:#fff;background:var(--accent);border-radius:999px;padding:.15rem .6rem;font-size:.8rem;font-weight:800;vertical-align:middle;margin-left:.4rem}
+
+/* recommendation cards */
+.recs{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:0 0 20px}
+.rec{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px}
+.pill{display:inline-block;color:#fff;background:var(--accent);border-radius:999px;padding:.18rem .7rem;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.6rem}
+.pill.pilot{background:var(--amber);color:#3d2c08}
+.rec p{margin:0;font-size:.95rem}
+
+.warn{background:var(--amber-bg);color:var(--amber-ink);border-left:4px solid var(--amber);border-radius:var(--radius-sm);padding:14px 18px;margin:18px 0;font-size:.95rem}
 .cards{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:14px 0}
-.card{border:1px solid var(--line);border-radius:8px;padding:16px 18px;background:var(--bg)}
-.card .k{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:4px}
-.card ul{margin:6px 0 0;padding-left:18px}
-.card li{margin-bottom:4px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px}
+.card .k{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
+.card ul,.card ol{margin:.4rem 0 0;padding-left:1.1rem}
+.card li{margin-bottom:.35rem}
 .stats{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin:18px 0}
-.stat{background:var(--bg2);border-radius:8px;padding:14px 16px}
-.stat .n{font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
-.stat .l{font-size:13px;color:var(--mute);margin-top:4px}
-.go{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin:26px 0}
-.go a{display:block;text-decoration:none;border:1.5px solid var(--ink);border-radius:8px;padding:14px 16px;font-weight:700}
-.go a span{display:block;font-weight:400;font-size:14px;color:var(--mute)}
-.go a:hover{background:var(--bg2)}
-.next{margin:34px 0 10px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px}
-.btn{display:inline-block;text-decoration:none;font:inherit;font-weight:700;background:var(--ink);color:var(--bg);border:0;border-radius:6px;padding:9px 16px;cursor:pointer}
-.btn.ghost{background:none;color:var(--ink);border:1.5px solid var(--ink)}
+.stat{background:var(--primary-bg);border-radius:var(--radius-sm);padding:14px 16px}
+.stat .n{font-size:1.65rem;font-weight:800;letter-spacing:-.02em;line-height:1.1;color:var(--primary)}
+.stat .l{font-size:.8rem;color:var(--muted);margin-top:.3rem;font-weight:500}
+.go{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin:22px 0 4px}
+.go a{display:block;text-decoration:none;background:var(--primary-bg);border-radius:var(--radius-sm);padding:14px 18px;font-weight:800;color:var(--primary);transition:background .15s,transform .12s,box-shadow .15s}
+.go a span{display:block;font-weight:500;font-size:.85rem;color:var(--muted)}
+.go a:hover{background:#dcecf5;transform:translateY(-1px);box-shadow:0 6px 14px #1e323c24}
+.next{margin:30px 0 4px;padding-top:18px;border-top:1px solid var(--border);display:flex;justify-content:space-between;gap:12px}
+.btn{display:inline-block;text-decoration:none;font:inherit;font-size:.85rem;font-weight:700;background:var(--primary);color:#fff;border:0;border-radius:var(--radius-sm);padding:.6rem 1.1rem;cursor:pointer;transition:background .15s,transform .12s,box-shadow .15s}
+.btn:hover{background:var(--primary-h);transform:translateY(-1px);box-shadow:0 6px 14px #1e323c24}
+.btn.ghost{background:var(--primary-bg);color:var(--primary)}
+.btn.ghost:hover{background:#dcecf5}
+
+/* iso grid */
 .gridwrap{overflow-x:auto;margin:18px 0}
-.iso-grid{display:grid;grid-template-columns:150px repeat(4,minmax(150px,1fr));gap:4px;min-width:780px;font-size:14px}
-.iso-grid>div{padding:10px 12px;border-radius:4px}
-.iso-grid .hd{font-weight:800;color:#fff;text-align:center}
+.iso-grid{display:grid;grid-template-columns:150px repeat(4,minmax(150px,1fr));gap:4px;min-width:780px;font-size:.85rem}
+.iso-grid>div{padding:10px 12px;border-radius:8px}
+.iso-grid .hd{font-weight:800;color:#fff;text-align:center;border-radius:999px}
 .iso-grid .hd.empty{background:none}
-.iso-grid .cl{font-weight:700;background:var(--bg2)}
+.iso-grid .cl{font-weight:800;background:var(--primary-bg);color:var(--primary)}
 .iso-grid .common{grid-column:2 / span 4;background:var(--common);text-align:center}
-.iso-grid .spec{border:1.5px solid}
-.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13.5px;color:var(--mute);margin-top:8px}
-.legend i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.iso-grid .spec{border:1.5px solid;background:var(--surface)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-top:8px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
 .norm{border-top:5px solid var(--c)}
-.norm .tag{display:inline-block;font-size:11.5px;font-weight:700;background:var(--bg2);padding:2px 8px;border-radius:3px;margin-top:6px}
-table{border-collapse:collapse;width:100%;font-size:15px;margin:12px 0}
-th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-th{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);border-bottom:2px solid var(--ink)}
+.norm .tag{display:inline-block;font-size:.72rem;font-weight:700;background:var(--bg);color:var(--muted);padding:.15rem .6rem;border-radius:999px;margin-top:.3rem}
+
+/* tables */
+.tblwrap{overflow-x:auto;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);margin:12px 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:var(--primary-bg);font-weight:800}
 td.num,th.num{text-align:right;white-space:nowrap}
-tr.sub td{font-weight:800;background:var(--bg2)}
-.tblwrap{overflow-x:auto}
+tr.sub td{font-weight:800;background:var(--primary-bg);color:var(--primary)}
+
+/* phases */
 .phases{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin:14px 0}
-.phase{border:1.5px solid var(--ink);border-radius:8px;padding:16px 18px}
-.phase.pilot{border-style:dashed}
-.phase .when{font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
-.phase .budget{font-size:15px;margin:6px 0 8px}
-.phase .budget b{font-size:22px;font-weight:800;display:block;line-height:1.2}
-.phase .gate{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:14px}
-.phase .gate b{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
-details{border:1px solid var(--line);border-radius:8px;padding:12px 16px;margin:14px 0}
-summary{cursor:pointer;font-weight:700}
+.phase{background:var(--surface);border:1px solid var(--border);border-top:5px solid var(--accent);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px}
+.phase.pilot{border-top-color:var(--amber)}
+.phase .budget{font-size:.9rem;margin:.5rem 0 .6rem;color:var(--muted)}
+.phase .budget b{font-size:1.5rem;font-weight:800;display:block;line-height:1.2;color:var(--primary)}
+.phase .gate{margin-top:.8rem;padding-top:.8rem;border-top:1px solid var(--border);font-size:.85rem}
+.phase .gate b{display:block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+
+details{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 16px;margin:14px 0;box-shadow:var(--shadow)}
+summary{cursor:pointer;font-weight:800;color:var(--primary)}
 details[open] summary{margin-bottom:10px}
-.calc{border:1.5px solid var(--ink);border-radius:10px;padding:18px 22px;margin:16px 0;background:var(--bg)}
-.calc label{display:block;font-weight:600;font-size:14.5px;margin:14px 0 2px}
-.calc label span{float:right;font-weight:800}
-.calc label small{display:block;font-weight:400;color:var(--mute);font-size:12.5px;line-height:1.35}
-.calc input[type=range]{width:100%;accent-color:var(--ink)}
+
+/* calculator */
+.calc{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 24px;margin:16px 0}
+.calc label{display:block;font-weight:700;font-size:.9rem;margin:14px 0 2px}
+.calc label span{float:right;font-weight:800;color:var(--accent)}
+.calc label small{display:block;font-weight:500;color:var(--muted);font-size:.78rem;line-height:1.35}
+.calc input[type=range]{width:100%;accent-color:var(--accent)}
 .calc .out{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));margin-top:18px}
-.calc .res{background:var(--bg2);border-radius:8px;padding:12px 14px}
-.calc .res .n{font-size:23px;font-weight:800;line-height:1.15}
-.calc .res .l{font-size:12.5px;color:var(--mute)}
-.calc .verdict-line{margin-top:14px;font-weight:700}
-.calc details{margin:14px 0 0}
+.calc .res{background:var(--primary-bg);border-radius:var(--radius-sm);padding:12px 14px}
+.calc .res .n{font-size:1.45rem;font-weight:800;line-height:1.15;color:var(--primary)}
+.calc .res .l{font-size:.78rem;color:var(--muted)}
+.calc .verdict-line{margin-top:14px;font-weight:800}
+.calc details{margin:14px 0 0;box-shadow:none}
 .pos{color:var(--ok)} .neg{color:var(--bad)}
-.q{border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:14px 0}
-.q .qt{font-weight:700;margin-bottom:10px}
-.q button.opt{display:block;width:100%;text-align:left;font:inherit;font-size:15.5px;padding:10px 12px;margin:6px 0;background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:6px;cursor:pointer}
-.q button.opt:hover:not(:disabled){border-color:var(--ink)}
-.q button.opt.right{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--bg))}
-.q button.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--bg))}
-.q .why{display:none;font-size:14.5px;color:var(--mute);margin-top:8px}
+
+/* quiz */
+.q{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin:14px 0}
+.q .qt{font-weight:800;margin-bottom:10px;color:var(--primary)}
+.q button.opt{display:block;width:100%;text-align:left;font:inherit;font-size:.95rem;padding:10px 14px;margin:6px 0;background:var(--surface);color:var(--text);border:1.5px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;transition:border-color .15s,background .15s}
+.q button.opt:hover:not(:disabled){border-color:var(--accent);background:var(--primary-bg)}
+.q button.opt.right{border-color:var(--ok);background:var(--accent-bg)}
+.q button.opt.wrong{border-color:var(--bad);background:#fbe9e5}
+.q .why{display:none;font-size:.9rem;color:var(--muted);margin-top:8px}
 .q.done .why{display:block}
-.score{font-weight:800;font-size:20px;margin:16px 0}
-ol.src{padding-left:24px;font-size:15px}
+.score{font-weight:800;font-size:1.3rem;margin:16px 0;color:var(--primary)}
+ol.src{padding-left:1.5rem;font-size:.92rem}
 ol.src li{margin-bottom:8px}
-.flag{display:inline-block;font-size:11px;font-weight:700;background:var(--yellow);color:#1a1a1a;border-radius:3px;padding:1px 6px;margin-left:6px;vertical-align:1px}
-footer{border-top:1px solid var(--line);margin-top:40px;padding:22px 0 46px;font-size:14px;color:var(--mute)}
+.flag{display:inline-block;font-size:.68rem;font-weight:800;background:var(--amber-bg);color:var(--amber-ink);border:1px solid var(--amber);border-radius:999px;padding:.05rem .55rem;margin-left:6px;vertical-align:1px}
+
+footer{background:rgba(255,255,255,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--border);margin-top:34px;padding:22px 0 40px;font-size:.85rem;color:var(--muted)}
+footer b{color:var(--primary)}
 @media(max-width:700px){
-  body{font-size:16px}
+  .app-header .bar{flex-wrap:wrap;gap:0}
+  .app-header nav{width:100%;padding:0 0 10px}
+  .hero-blue{padding:2.4rem 1.2rem}
   .iso-grid{min-width:0;grid-template-columns:1fr}
   .iso-grid .hd.empty{display:none}
   .iso-grid .common{grid-column:auto}
@@ -132,36 +181,42 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding:22px 0 46px;font
 </head>
 <body>
 
-<nav><div class="wrap">
-  <b>ISO IMS</b>
-  <a href="#summary" data-t="summary">Summary</a><a href="#case" data-t="case">The case</a><a href="#money" data-t="money">The money</a><a href="#plan" data-t="plan">The plan</a><a href="#learn" data-t="learn">Learn &amp; quiz</a><a href="#sources" data-t="sources">Sources</a>
-</div></nav>
+<header class="app-header"><div class="wrap bar">
+  <a class="brand" href="#summary" aria-label="FARA ISO IMS home"><span class="brand-name">FARA</span><span class="logo-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span></a>
+  <nav>
+    <a href="#summary" data-t="summary">Summary</a><a href="#case" data-t="case">The case</a><a href="#money" data-t="money">The money</a><a href="#plan" data-t="plan">The plan</a><a href="#learn" data-t="learn">Learn &amp; quiz</a><a href="#sources" data-t="sources">Sources</a>
+  </nav>
+</div></header>
 
 <main class="wrap">
 
 <!-- SUMMARY -->
 <section class="panel" id="p-summary">
-  <p class="eyebrow">Briefing for managers · ISO 9001 / 14001 / 50001 / 27001 / 42001</p>
-  <h1>Should Porcelanosa Grupo run its ISO standards as one system?</h1>
-  <p class="lead">Yes: one group system now, information security in phases, and AI as a pilot.</p>
-  <div class="verdict">
-    <b class="tag">OUR RECOMMENDATION</b>
-    <ul>
-      <li><b>ADOPT:</b> one group IMS that merges the existing ISO 9001, 14001 and 50001, and feeds CSRD climate reporting.</li>
-      <li><b>ADOPT (phased):</b> ISO 27001, with IT, ERP and e-commerce first, then plants and stores.</li>
-      <li><b>PILOT:</b> ISO 42001 for industrial AI and the customer configurator, with a certification decision at month 12.</li>
-    </ul>
+  <div class="hero-blue">
+    <span class="logo-mark hero-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+    <p class="hero-eyebrow">Briefing for managers · ISO 9001 / 14001 / 50001 / 27001 / 42001</p>
+    <h1>Should Porcelanosa Grupo run its ISO standards as one system?</h1>
+    <p class="hero-sub">Yes: one group system now, information security in phases, and AI as a pilot.</p>
+    <p class="hero-desc">Team FARA · Built for SM&amp;IT</p>
   </div>
-  <div class="stats">
-    <div class="stat"><div class="n" id="sSetup"></div><div class="l" id="sSetupL"></div></div>
-    <div class="stat"><div class="n" id="sRun"></div><div class="l" id="sRunL"></div></div>
-    <div class="stat"><div class="n" id="sAudit"></div><div class="l">Audit savings a year: small, so not the reason to do it</div></div>
-  </div>
-  <p><b>The honest catch:</b> about €0.9 M a year buys resilience that is invisible until an incident. The case rests mainly on cyber resilience and on regulation (CSRD), not on efficiency.</p>
-  <div class="go">
-    <a href="#case">The case <span>Porcelanosa, value, barriers</span></a>
-    <a href="#money">The money <span>Costs and break-even calculator</span></a>
-    <a href="#plan">The plan <span>Phases, conditions, indicators</span></a>
+  <div class="sheet">
+    <p class="eyebrow">Our recommendation</p>
+    <div class="recs">
+      <div class="rec"><span class="pill">Adopt</span><p>One group IMS that merges the existing ISO 9001, 14001 and 50001, and feeds CSRD climate reporting.</p></div>
+      <div class="rec"><span class="pill">Adopt, phased</span><p>ISO 27001: IT, ERP and e-commerce first, then plants and stores.</p></div>
+      <div class="rec"><span class="pill pilot">Pilot</span><p>ISO 42001 for industrial AI and the customer configurator, with a certification decision at month 12.</p></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="n" id="sSetup"></div><div class="l" id="sSetupL"></div></div>
+      <div class="stat"><div class="n" id="sRun"></div><div class="l" id="sRunL"></div></div>
+      <div class="stat"><div class="n" id="sAudit"></div><div class="l">Audit savings a year: small, so not the reason to do it</div></div>
+    </div>
+    <div class="warn"><b>The honest catch:</b> about €0.9 M a year buys resilience that is invisible until an incident. The case rests mainly on cyber resilience and on regulation (CSRD), not on efficiency.</div>
+    <div class="go">
+      <a href="#case">The case <span>Porcelanosa, value, barriers</span></a>
+      <a href="#money">The money <span>Costs and break-even calculator</span></a>
+      <a href="#plan">The plan <span>Phases, conditions, indicators</span></a>
+    </div>
   </div>
 </section>
 
@@ -264,7 +319,7 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding:22px 0 46px;font
   <div class="cards" id="normCards"></div>
   <div class="warn"><b>Hype to discount:</b> (a) integration cuts combined audit time by at most 20% [16]; (b) ISO 42001 does not give AI Act conformity, a role that belongs to EN 18286 [11][12]; (c) ISO 9001 and 14001 do nothing for cyber security.</div>
 
-  <h3>Quiz: 6 questions</h3>
+  <h3>Quiz<span class="count">6</span></h3>
   <div id="quizBox"></div>
   <div class="score" id="score" aria-live="polite"></div>
   <button class="btn" id="restart" hidden>Restart quiz</button>
@@ -274,7 +329,7 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding:22px 0 46px;font
 <!-- SOURCES -->
 <section class="panel" id="p-sources">
   <p class="eyebrow">Sources</p>
-  <h2>Sources, with weak evidence flagged</h2>
+  <h2>Sources, with weak evidence flagged<span class="count" id="srcCount"></span></h2>
   <ol class="src" id="srcList"></ol>
   <div class="warn" id="weak"></div>
   <p class="small"><b>Use of AI.</b> We used Claude (Anthropic) to write the code of this website and to publish it, and to find information on the regulations quickly. Every source was checked by one of us.</p>
@@ -450,7 +505,7 @@ COSTS.forEach(c => $('#costTable tbody').append(el('tr','', `<td>${c[0]}</td><td
 $('#costTable tbody').append(el('tr','sub', `<td>Total recommended package</td><td class="num">${kfmt(SETUP)}</td><td class="num">+${kfmt(RUN)}</td><td class="small">${(SETUP/1e6/REVENUE*100).toFixed(2)}% of revenue / ${(RUN/1e6/EBITDA*100).toFixed(1)}% of EBITDA</td>`));
 PHASE_INFO.forEach(p => {
   const s = sumIdx(GROUPS[p.key],1), r = sumIdx(GROUPS[p.key],2);
-  $('#phases').append(el('div','phase'+(p.pilot?' pilot':''), `<div class="when">${p.tag}</div><h3 style="margin:4px 0 0">${p.t}</h3><div class="budget"><b>${money(s)} set-up</b>${r<0?'saves ':''}${money(Math.abs(r))} a year ${r<0?'in running costs':'to run'}</div><p class="small" style="margin:0">${p.b}</p>${p.gate?`<div class="gate"><b>Gate</b>${p.gate}</div>`:''}`));
+  $('#phases').append(el('div','phase'+(p.pilot?' pilot':''), `<span class="pill${p.pilot?' pilot':''}">${p.tag}</span><h3 style="margin:4px 0 0">${p.t}</h3><div class="budget"><b>${money(s)} set-up</b>${r<0?'saves ':''}${money(Math.abs(r))} a year ${r<0?'in running costs':'to run'}</div><p class="small" style="margin:0">${p.b}</p>${p.gate?`<div class="gate"><b>Gate</b>${p.gate}</div>`:''}`));
 });
 CONDS.forEach(t => $('#conds').append(el('li','',t)));
 KPIS.forEach(t => $('#kpis').append(el('li','',t)));
@@ -458,7 +513,7 @@ TRADE.forEach(t => $('#trade').append(el('li','',t)));
 PLAN90.forEach(r => $('#plan90 tbody').append(el('tr','', r.map(x=>`<td>${x}</td>`).join(''))));
 cardList($('#change'), CHANGE);
 SOURCES.forEach(([t,u,f]) => $('#srcList').append(el('li','', `<a href="${u}" target="_blank" rel="noopener">${t}</a>${f?`<span class="flag">check: ${f}</span>`:''}`)));
-$('#weak').innerHTML = WEAK;
+$('#weak').innerHTML = WEAK; $('#srcCount').textContent = SOURCES.length;
 
 /* ============ CALCULATOR ============ */
 const DAILY = REVENUE/DAYS_YEAR; // €M per day of full stoppage (upper bound)
