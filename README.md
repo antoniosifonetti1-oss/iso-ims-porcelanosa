@@ -1,6 +1,6 @@
 # ISO Integrated Management Systems at Porcelanosa
 
-Single-page static site: decision brief on integrating ISO 9001, 14001 and 50001, adding ISO 27001 and piloting ISO 42001 (AI) at Porcelanosa. Includes a break-even calculator and an 8-question quiz.
+Single-page static site: decision brief on integrating ISO 9001 and 14001, adding ISO 27001 and piloting ISO 42001 (AI) at Porcelanosa. Includes a break-even calculator and a 6-question quiz.
 
 No build step, no dependencies (only the Manrope font from Google Fonts).
 
