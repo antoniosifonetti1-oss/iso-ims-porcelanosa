@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: iso-ims-porcelanosa
+    runtime: static
+    staticPublishPath: .
+    pullRequestPreviewsEnabled: false
