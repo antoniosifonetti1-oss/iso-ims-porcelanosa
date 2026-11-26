@@ -243,6 +243,31 @@ ol.src li{margin-bottom:8px}
 .count-tile .n{font-size:2rem;font-weight:800;color:var(--primary);line-height:1}
 .count-tile .l{font-size:.8rem;color:var(--muted);margin-top:4px}
 
+/* balanced grids: boxes always fill the row evenly (set by the script from the item count) */
+:is(.cards,.chips,.recs,.stats,.go,.counts,.vcards,.phases,.out,.vizcols)[data-n]{display:grid;gap:14px}
+:is(.cards,.chips,.recs,.stats,.go,.counts,.vcards,.phases,.out,.vizcols)[data-n="1"]{grid-template-columns:1fr}
+:is(.cards,.chips,.recs,.stats,.go,.counts,.vcards,.phases,.out,.vizcols)[data-n="2"]{grid-template-columns:repeat(2,1fr)}
+:is(.cards,.chips,.recs,.stats,.go,.counts,.vcards,.phases,.out,.vizcols)[data-n="3"]{grid-template-columns:repeat(3,1fr)}
+:is(.cards,.chips,.recs,.stats,.go,.counts,.vcards,.phases,.out,.vizcols)[data-n="4"]{grid-template-columns:repeat(2,1fr)}
+:is(.cards,.chips,.recs,.stats,.go,.counts,.vcards,.phases,.out,.vizcols)[data-n="4"].row4{grid-template-columns:repeat(4,1fr)}
+:is(.cards,.chips,.recs,.stats,.go,.counts,.vcards,.phases,.out,.vizcols)[data-n="5"]{grid-template-columns:repeat(6,1fr)}
+:is(.cards,.chips,.recs,.stats,.go,.counts,.vcards,.phases,.out,.vizcols)[data-n="5"]>*{grid-column:span 2}
+:is(.cards,.chips,.recs,.stats,.go,.counts,.vcards,.phases,.out,.vizcols)[data-n="5"]>:nth-child(n+4){grid-column:span 3}
+:is(.cards,.chips,.recs,.stats,.go,.counts,.vcards,.phases,.out,.vizcols)[data-n="6"]{grid-template-columns:repeat(3,1fr)}
+@media(max-width:760px){
+  :is(.cards,.chips,.recs,.stats,.go,.counts,.vcards,.phases,.out,.vizcols)[data-n="3"]{grid-template-columns:1fr}
+  :is(.cards,.chips,.recs,.stats,.go,.counts,.vcards,.phases,.out,.vizcols)[data-n="4"].row4{grid-template-columns:repeat(2,1fr)}
+  :is(.cards,.chips,.recs,.stats,.go,.counts,.vcards,.phases,.out,.vizcols)[data-n="5"]{grid-template-columns:repeat(2,1fr)}
+  :is(.cards,.chips,.recs,.stats,.go,.counts,.vcards,.phases,.out,.vizcols)[data-n="5"]>:nth-child(n+1){grid-column:auto}
+  :is(.cards,.chips,.recs,.stats,.go,.counts,.vcards,.phases,.out,.vizcols)[data-n="5"]>:nth-child(5){grid-column:span 2}
+  :is(.cards,.chips,.recs,.stats,.go,.counts,.vcards,.phases,.out,.vizcols)[data-n="6"]{grid-template-columns:repeat(2,1fr)}
+  :is(.cards,.chips,.recs,.stats,.go,.counts,.vcards,.phases,.out,.vizcols)[data-n="2"].vstack{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  :is(.cards,.chips,.recs,.stats,.go,.counts,.vcards,.phases,.out,.vizcols)[data-n]{grid-template-columns:1fr}
+  :is(.cards,.chips,.recs,.stats,.go,.counts,.vcards,.phases,.out,.vizcols)[data-n]>:nth-child(n+1){grid-column:auto}
+}
+
 footer{background:rgba(255,255,255,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--border);margin-top:34px;padding:22px 0 40px;font-size:.85rem;color:var(--muted)}
 footer b{color:var(--primary)}
 @media(max-width:700px){
@@ -701,6 +726,8 @@ function buildQuiz(){
 }
 $('#restart').onclick = () => { buildQuiz(); $('#quizBox').scrollIntoView(); };
 buildQuiz();
+/* balance every box grid by its number of items */
+document.querySelectorAll('.cards,.chips,.recs,.stats,.go,.counts,.vcards,.phases,.out,.vizcols').forEach(c => { c.dataset.n = c.children.length; if (c.matches('.chips,.out')) c.classList.add('row4'); if (c.matches('.vizcols')) c.classList.add('vstack'); });
 show(location.hash.slice(1));
 </script>
 </body>
